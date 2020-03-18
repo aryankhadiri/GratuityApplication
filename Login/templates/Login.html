@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div>
+        <form action = '.' method = POST>{% csrf_token %}
+        {{form.as_p}}
+        <input type = 'submit' value = 'Login'>
+        <p style = 'color:red'> {{error}}</p>
+    </div>
+    </form>
+    </body>
+</html>
