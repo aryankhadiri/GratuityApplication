@@ -39,7 +39,7 @@ body {
   display: inline;
 }
 
-#login-wrapper .login-form fieldset .error {
+#login-wrapper .login-form fieldset .errors {
   color: rgba(212, 57, 57, 0.76);
 }
 
