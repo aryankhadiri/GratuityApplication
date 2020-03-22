@@ -25,9 +25,9 @@ def login_view(request):
             return redirect('/manager/')
 
     if request.method == 'POST':
-        if form.is_valid():
-            user_email = form.cleaned_data['email']
-            user_password = form.cleaned_data['password']
+        if form.is_valid:
+            user_email = request.POST.get('email')
+            user_password = request.POST.get('password')
             user = authenticate(request, email = user_email, password = user_password)
 
             if user is not None:
