@@ -125,7 +125,8 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'GratuityProject/static')
 ]
 AUTH_USER_MODEL = 'Login.User'
-
+LOGIN_URL = '/login/' #the url for redirecting unauthorized users
+#
 #messages
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
