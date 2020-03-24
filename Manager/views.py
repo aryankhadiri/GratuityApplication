@@ -35,7 +35,7 @@ def employee(request):
         form = EmployeeForm()
         return render(request, 'pages/_index.html', {'form': form})
     
- def listEmployee(request):
+def listEmployee(request):
     queryset = Employee.objects.all()
     context = {
         "list":queryset
