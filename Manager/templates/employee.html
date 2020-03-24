@@ -1,0 +1,25 @@
+<header>
+    <title>{{ title }}</title>
+</header>
+    <form method="POST" class="post-form">
+        {% include 'alert.html' %}
+        {% csrf_token %}
+        <div>
+            <label for="name"> Name:</label> 
+            {{ form.name }}
+        </div>
+        <div>
+            <label for= "point"> Point:</label>
+            {{ form.point }}
+        </div>
+        <div>
+            <label for="phone"> Phone Number:</label>
+            {{ form.phone }}
+        </div>
+        <button type="submit" name="save_button" class="save btn btn-default">Save</button>
+        <button type="submit" name ="cancel_button" class="cancel btn btn-default" formnovalidate>Cancel</button>
+        {% if title == "Update Employee Information" %}
+        <button type="submit" name ="delete_button" class="delete btn btn-default">Delete</button>
+        {% endif %}
+    </form>
+

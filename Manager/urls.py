@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path
 
 from django.urls import include
-from .views import home_view
+from .views import *
 from . import views
 
 urlpatterns = [
     path('homepage', home_view, name = 'home'),
     path('', home_view, name = 'home'),
-    path('employee',views.employee, name='employee'),
-    path('list',views.listEmployee, name='list'),  
+    path('addemployee',add_employee_view, name='add_employee'),
+    path('list/',list_employee_view, name='list_employee'),
+    path('list/<int:id>/', update_employee_view, name = 'update_employee')  
 ]
