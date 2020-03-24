@@ -1,8 +1,18 @@
-{% block content %}
-    <h2>Adding Employee Form</h2>
+<h1>Adding Employee Form</h1>
     <form method="POST" class="post-form">
+        {% include 'pages/_alert.html' %}
         {% csrf_token %}
-        {{ form.as_p }}
+        <div>
+            <label for="name"> Name:</label> 
+            {{ form.name }}
+        </div>
+        <div>
+            <label for= "point"> Point:</label>
+            {{ form.point }}
+        </div>
+        <div>
+            <label for="phone"> Phone Number:</label>
+            {{ form.phone }}
+        </div>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
-{% endblock %}
