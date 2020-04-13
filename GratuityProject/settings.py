@@ -56,7 +56,7 @@ ROOT_URLCONF = 'GratuityProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates"), os.path.join(BASE_DIR, "Manager/templates"),],
+        'DIRS': [os.path.join(BASE_DIR, "templates"),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,7 +125,8 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'GratuityProject/static')
 ]
 AUTH_USER_MODEL = 'Login.User'
-
+LOGIN_URL = '/login/' #the url for redirecting unauthorized users
+#
 #messages
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {

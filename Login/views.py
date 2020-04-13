@@ -18,12 +18,15 @@ def login_view(request):
 
     error = ''
     form = LoginForm()
-
+    
     if request.user.is_authenticated:
         # redirect the user (based on their management status) to their appropriate homepage
         if request.user.manager == True:
             return redirect('/manager/')
-
+        else:
+            #TODO 
+            """User Homepage (no manager)"""
+            
     if request.method == 'POST':
         if form.is_valid:
             user_email = request.POST.get('email')
