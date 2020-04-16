@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+#nav{
+    background-color: rgba(124, 60, 7, 0.513);
+    padding:1%;
+    text-align: center;
+}
+
+#list li {
+    display: inline-block;
+    background-color: rgba(41, 20, 4, 0.602);
+    border-radius: 7%;
+    margin:0 .5%;
+    font-family:"Lato";
+    padding:0;
+}
+#list li a{
+    padding: 1em;
+    display: block;
+
+}
+
+#list li:hover{
+    background-color: rgba(41, 20, 4, 0.924);
+    transition: background-color ease-in 300ms;
+}
+#list a{
+    color:white;
+    text-decoration:none;
+}
+body{
+    margin:0;
+}

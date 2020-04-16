@@ -1,5 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <header>
     <title>{{ title }}</title>
+    {% load static %}
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'addemployee.css' %}">
 </header>
     <form method="POST" class="post-form">
         {% include 'alert.html' %}
@@ -23,3 +28,4 @@
         {% endif %}
     </form>
 
+    {% endblock %}
