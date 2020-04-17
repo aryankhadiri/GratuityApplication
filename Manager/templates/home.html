@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
+{% block content %}
+ <header>
+    {% load static %}
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'home.css' %}">
+ </header>
     <div>
-        <body>
             {% csrf_token %}
             <p>{{Hello}}</p>
-        </body>
     </div>
-</html>
+   
+{% endblock %}

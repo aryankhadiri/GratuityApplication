@@ -1,0 +1,26 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'base.css' %}">
+    </head>
+    <header>
+        <nav id = "nav">
+            <ul id = "list">
+                <li id = "list_item1"><a href = "/manager/homepage">Home</a></li>
+                <li id = "list_item2"><a href = "/manager/addemployee">Add New Employee</a></li>
+                <li id = "list_item3"><a href = "/manager/list">Edit Employees information</a></li>
+                <li id = "list_item4"><a href = "">Weekly Reports</a></li>
+
+            </ul>
+        </nav>
+    
+</header>
+
+<body>
+{% block content %}
+{% endblock %}
+
+
+</body>
+</html>
+
