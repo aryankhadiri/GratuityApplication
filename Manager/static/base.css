@@ -12,6 +12,7 @@ h1 {
 }
 
 h3 {
+    padding-top: 5px;
     font-size: 1.17rem !important;
 }
 
@@ -113,12 +114,7 @@ nav {
 }
 
 #main-content {
-    border-radius: 25px;
     height: 85vh;
-}
-
-#main-content #recent-forms tr#header {
-    border-bottom: 1px solid #000000;
 }
 
 /*

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Dashboard</title>
+        <title>{{ title }}</title>
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -22,10 +22,10 @@
     </div>
     <!-- end top row-->
 
-     <!-- second row, consists of the side navigation bar and the page's main content-->
-     <div class="row">
+    <!-- second row, consists of the side navigation bar and the page's main content-->
+    <div class="row">
+        <!-- navigation sidebar-->
         <div class="col m4 l4 hide-on-med-and-down" id="sidenav">
-            <!-- navigation sidebar-->
             <nav id="nav">
                 <ul>
                     <li id="list_item1"><span><a class="active" href="/manager/homepage"><i class="fas fa-home fa-fw"></i>
@@ -38,33 +38,13 @@
                         Weekly Reports</a></li>
                 </ul>
             </nav>
-            <!-- end navigation sidebar-->
         </div>
+        <!-- end navigation sidebar-->
 
         <!-- main content-->
         <div class="col s12 m12 l8" id="main-content">
-            <h4>Recent Forms</h4>
-            <div class="center-align" id="recent-forms">
-                <table>
-                    <!-- table headers-->
-                    <tr id="header">
-                        <th>Employee</th>
-                        <th>Time</th>
-                        <th>Date</th>
-                    </tr>
-                    <!-- table cells; placeholder text-->
-                    <tr>
-                        <td>Joe</td>
-                        <td>4:20 p.m.</td>
-                        <td>4/20/2020</td>
-                    </tr>
-                    <tr>
-                        <td>Jack</td>
-                        <td>4:25 p.m.</td>
-                        <td>4/25/2020</td>
-                    </tr>
-                </table>
-            </div>
+            {% block content %}
+            {% endblock %}
         </div>
         <!-- end main content-->
     </div>
@@ -72,8 +52,6 @@
 
 
 <body>
-    {% block content %}
-    {% endblock %}
 </body>
 
 </html>
