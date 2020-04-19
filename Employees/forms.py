@@ -4,21 +4,16 @@ from .models import Tip
 from datetime import datetime
 
 class TipForm(forms.ModelForm):
-    date = forms.DateField(widget=forms.HiddenInput(attrs = {
-        'class': 'Date',
-        'id': 'TFdate'
-        
-
-        
-    }))
+    
 
     employee = forms.Select(attrs={
         'class': 'name',
     }) 
     time_frame = forms.Select(attrs = {
         'class': 'time_frame',
-        'id': 'time_frame'
-    })    
+        'id': 'time_frame',
+        'required': False
+    })   
     point = forms.FloatField(widget = forms.NumberInput(attrs = {
         'class': 'point'
     }))
@@ -38,7 +33,6 @@ class TipForm(forms.ModelForm):
     class Meta:
         model = Tip
         fields = {
-            'date',
             'employee',
             'point',
             'tip_amount',
@@ -85,9 +79,7 @@ class newForm(forms.ModelForm):
         'class': 'pre_shift_tip',
         'id': 'pre_shift_tip'
     }))
-    time = forms.TimeField(widget= forms.HiddenInput(attrs={
-        'value':datetime.now().time()
-    }))
+    
     class Meta:
         model = Form
         fields = {
@@ -98,8 +90,7 @@ class newForm(forms.ModelForm):
             'service_charge',
             'cash_sales',
             'cash_tip',
-            'pre_shift_tip',
-            'time'
+            'pre_shift_tip'
         }
     #def __init__(self, time):
 

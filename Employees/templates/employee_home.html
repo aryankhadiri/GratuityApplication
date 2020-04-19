@@ -7,8 +7,9 @@
 <body>
     <form action = "" method = "POSt">
         {% csrf_token %}
-    <div id = "outer-wrapper">
+        {{form.management_form}}
         
+    <div id = "outer-wrapper">
             <div id = "top-section">
                 <div class = 'asd'>
                     <label class= "labels", id = "ccLabel">Credit Card Tip</label>
@@ -54,27 +55,40 @@
         <div id = "middle-section">
             <div id = "names">
                 <h4>Name</h4>
-                {{tip_form.employee}}
+                {% for form in form %}
+                {{form.employee}}
+                {%endfor%}
             </div>
             <div id = "indexes">
                 <h4>Performance Index</h4>
-                {{tip_form.point}}
-
+                {% for form in form %}
+                {{form.point}}
+                {%endfor%}
             </div>
             <div id = "tips">
                 <h4>Tip</h4>
-                {{tip_form.tip_amount}}
+                {% for form in form %}
+                {{form.tip_amount}}
+                {%endfor%}
 
             </div>
             <div id = "paid-todays">
                 <h4>Paid Today</h4>
-                {{tip_form.paid_today}}
+                {% for form in form %}
+                {{form.paid_today}}
+                {%endfor%}
             </div>
             <div id = "paid-laters">
                 <h4>Paid Later</h4>
-                {{tip_form.paid_later}}
+                {% for form in form %}
+                {{form.paid_later}}
+                {%endfor%}
             </div>
             
+        </div>
+        <div id = 'add-div'>
+            <input type = "button" id = "add-button" onclick="addElement()" value = "add">
+
         </div>
         <div id = "bottom-section">
             <label class = "labels", id = "dateLabel">Date</label>
@@ -89,47 +103,15 @@
             <input type = "number" id = "tip_left">
             <label class = "labels", id = "clLabel">Cash Left</label>
             <input type = "number" id = "cash_left"><br>
-            {{tip_form.date}}
-            {{new_form.time}}
+            
             <input type = "submit">
         </div>
     </form>
     </div>
     
 </body>
-<script>
-    function copyDate(){
-    var x = document.getElementById("NFdate").value;
-    var y = document.getElementById("TFdate");
-    y.value = x 
-}
-</script>
-<!--
-<script>
-    var employees_info = {};
-    {% for instance in list %}
-        var name = "{{instance.name}}";
-        var point = {{instance.point}};
-        employees_info[name]=point
-    {% endfor %}
-    var x = document.getElementById("id_employee");
-    for (i = 0; i<10; i++){
-        var y = x.cloneNode(true)
-        y.id = "id_employee"+i;
 
-        var z = document.getElementById("names");
-
-        z.appendChild(y);
-       
-    }
-    var counter = 9;
-    
-    function add_new_employee(){
-        
-    }
-
-    
-</script>
+<script src = "{% static 'employee_home.js' %}"></script>
 -->
 
 
