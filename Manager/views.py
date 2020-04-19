@@ -8,16 +8,15 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 #@login_required
 def home_view(request):
-    Hello = 'Hello Boys..Welcome!'
+    title = 'Dashboard | Home'
     context = {
-        'Hello':Hello
-        
+        'title': title
     }
     return render(request, 'home.html', context)
 #@login_required
 #login_required is functional, just commented out for development process
 def add_employee_view(request):
-    title = 'Adding Employee'
+    title = 'Dashboard | Add Employee'
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if request.POST.get('cancel_button') == '':
@@ -35,6 +34,10 @@ def add_employee_view(request):
         else:
             messages.error(request, 'The form is invalid.')
 
+        context = {
+            'title': title,
+            'form': form
+        }
         return render(request, 'employee.html', context)
     
     form = EmployeeForm()

@@ -8,15 +8,15 @@ class EmployeeForm(forms.ModelForm):
     name = forms.CharField(max_length = 100, widget = forms.TextInput(attrs={
         'Class':'nameField',
         'id':'nameField',
-        'placeholder': 'David Watson'}))
+        'placeholder': 'Name'}))
     point = forms.FloatField(widget = forms.TextInput(attrs={
         'Class':'pointField',
         'id':'pointField',
-        'placeholder': '0.2'}))
+        'placeholder': 'Point Index'}))
     phone = forms.CharField(max_length = 10, widget = forms.TextInput(attrs={
         'Class':'phoneField',
         'id':'phoneField',
-        'placeholder': '8887776655'}))
+        'placeholder': 'Phone Number (XXXXXXXXXX)'}))
     class Meta:
         model = Employee
         fields = "__all__"
