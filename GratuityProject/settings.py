@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Login',
     'Manager',
+    'Employees',
 ]
 
 MIDDLEWARE = [
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Tijuana'
 
 USE_I18N = True
 
@@ -122,7 +123,8 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'GratuityProject/static')
+    os.path.join(BASE_DIR,'GratuityProject/Manager/static'),
+    os.path.join(BASE_DIR,'GratuityProject/Employee/static'),
 ]
 AUTH_USER_MODEL = 'Login.User'
 LOGIN_URL = '/login/' #the url for redirecting unauthorized users

@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(email, password)
         user.admin = True
         user.staff = True
-        user.manager = True
+        user.manager = False
         user.save(using=self._db)
         return user
 

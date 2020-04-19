@@ -1,0 +1,23 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel = "stylesheet" type = "text/css" href = "{% static 'base.css' %}">
+    </head>
+    <header>
+        <nav id = "nav">
+            <ul id = "list">
+                <li id = "list_item1"><a href = "/employee/homepage">New Form</a></li>
+                <li id = "list_item2"><a href = "">Submitted Form</a></li>
+            </ul>
+        </nav>
+    
+</header>
+
+<body>
+{% block content %}
+{% endblock %}
+
+
+</body>
+</html>
+

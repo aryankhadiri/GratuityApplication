@@ -23,5 +23,6 @@ urlpatterns = [
     path('', login_view, name = 'login'),
     path('login/', login_view, name = 'login'),
     path('manager/', include('Manager.urls')),
+    path('employee/', include('Employees.urls')),
 
 ]

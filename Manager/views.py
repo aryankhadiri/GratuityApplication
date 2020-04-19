@@ -7,7 +7,10 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 #@login_required
+
 def home_view(request):
+    if request.user.manager == False:
+        return redirect('/employee/')
     Hello = 'Hello Boys..Welcome!'
     context = {
         'Hello':Hello
@@ -17,6 +20,8 @@ def home_view(request):
 #@login_required
 #login_required is functional, just commented out for development process
 def add_employee_view(request):
+    if request.user.manager == False:
+        return redirect('/employee/')
     title = 'Adding Employee'
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
@@ -45,6 +50,8 @@ def add_employee_view(request):
     return render(request, 'employee.html', context)
     
 def list_employee_view(request):
+    if request.user.manager == False:
+        return redirect('/employee/')
     queryset = Employee.objects.all()
     context = {
         "list":queryset
@@ -52,6 +59,8 @@ def list_employee_view(request):
     return render (request,'list.html', context)
 
 def update_employee_view(request, id=id):
+    if request.user.manager == False:
+        return redirect('/employee/')
     title = 'Update Employee Information'
     employee = get_object_or_404(Employee, id=id)
     form = EmployeeForm(request.POST or None, instance = employee)

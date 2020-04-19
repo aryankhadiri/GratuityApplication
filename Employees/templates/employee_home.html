@@ -1,0 +1,136 @@
+{% extends 'base_employee.html' %}
+{% block content %}
+<header>
+    {% load static %}
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'emphome.css' %}">
+</header>
+<body>
+    <form action = "" method = "POSt">
+        {% csrf_token %}
+    <div id = "outer-wrapper">
+        
+            <div id = "top-section">
+                <div class = 'asd'>
+                    <label class= "labels", id = "ccLabel">Credit Card Tip</label>
+                    {{new_form.cc_tip}}
+                    <br>
+                    <label class= "labels", id = "scLabel">Service Charge</label>
+                    {{new_form.service_charge}}
+                    <br>
+                    <label class= "labels", id = "ttbcLabel">Total Tip By CC</label>
+                    <input type = "number" id = "Total_Tip_By_Cards">
+                </div>
+                <div class = 'asd'>
+                    <label class= "labels", id = "csLabel">Cash Sales</label>
+                    {{new_form.cash_sales}}
+                    <br>
+                    <label class= "labels", id = "ctLabel">Cash Tip</label>
+                    {{new_form.cash_tip}}
+                    <br>
+                    <label class= "labels", id = "tcLabel">Total Cash</label>
+                    <input type = "number" id = "Total_Cash">
+                </div>
+                <div class = 'asd'>
+                    <label class= "labels", id = "ccLabel2">CC Tip(s)</label>
+                    <input type = "number" id = "Total_Tip_By_Cards_2">
+                    <br>
+                    <label class= "labels", id = "ctLabel2">Cash Tip</label>
+                    <input type = "number" id = "cash_tip_2">
+                    <br>
+                    <label class= "labels", id = "ttLabel">Total Tip</label>
+                    <input type = "number" id = "Total_Tip">
+                </div>
+                <div class = 'asd'>
+                    <label class= "labels", id = "ttLabel2">Total Tip</label>
+                    <input type = "number" id = "Total_Tip_2">
+                    <br>
+                    <label class= "labels", id = "pstLabel">Pre Shift Tip</label>
+                    {{new_form.pre_shift_tip}}<br>
+                    <label class= "labels", id = "stLabel">Shift Tip</label>
+                    <input type = "number" id = "shift_tip">
+                </div>
+            </div>
+
+        <div id = "middle-section">
+            <div id = "names">
+                <h4>Name</h4>
+                {{tip_form.employee}}
+            </div>
+            <div id = "indexes">
+                <h4>Performance Index</h4>
+                {{tip_form.point}}
+
+            </div>
+            <div id = "tips">
+                <h4>Tip</h4>
+                {{tip_form.tip_amount}}
+
+            </div>
+            <div id = "paid-todays">
+                <h4>Paid Today</h4>
+                {{tip_form.paid_today}}
+            </div>
+            <div id = "paid-laters">
+                <h4>Paid Later</h4>
+                {{tip_form.paid_later}}
+            </div>
+            
+        </div>
+        <div id = "bottom-section">
+            <label class = "labels", id = "dateLabel">Date</label>
+            {{new_form.date}}
+            <label class = "labels", id = "tfLabel">Time Frame</label>
+            {{new_form.time_frame}}
+            <label class = "labels", id = "cbLabel">Closed By</label>
+            {{new_form.submitted_employee}}
+            <label class = "labels", id = "tiLabel">Total Index</label>
+            <input type = "number" id = "total_index">
+            <label class = "labels", id = "tlLabel">Tip Left</label>
+            <input type = "number" id = "tip_left">
+            <label class = "labels", id = "clLabel">Cash Left</label>
+            <input type = "number" id = "cash_left"><br>
+            {{tip_form.date}}
+            {{new_form.time}}
+            <input type = "submit">
+        </div>
+    </form>
+    </div>
+    
+</body>
+<script>
+    function copyDate(){
+    var x = document.getElementById("NFdate").value;
+    var y = document.getElementById("TFdate");
+    y.value = x 
+}
+</script>
+<!--
+<script>
+    var employees_info = {};
+    {% for instance in list %}
+        var name = "{{instance.name}}";
+        var point = {{instance.point}};
+        employees_info[name]=point
+    {% endfor %}
+    var x = document.getElementById("id_employee");
+    for (i = 0; i<10; i++){
+        var y = x.cloneNode(true)
+        y.id = "id_employee"+i;
+
+        var z = document.getElementById("names");
+
+        z.appendChild(y);
+       
+    }
+    var counter = 9;
+    
+    function add_new_employee(){
+        
+    }
+
+    
+</script>
+-->
+
+
+{% endblock %}

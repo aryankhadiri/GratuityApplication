@@ -15,7 +15,6 @@ from django.contrib.auth import authenticate, login
 #       LOGIN             
 # -----------------------------------------------------------------------------------------------------------------------------------------
 def login_view(request):
-
     error = ''
     form = LoginForm()
     
@@ -26,8 +25,10 @@ def login_view(request):
         else:
             #TODO 
             """User Homepage (no manager)"""
+            return redirect('/employee/')
             
     if request.method == 'POST':
+        print(request.POST)
         if form.is_valid:
             user_email = request.POST.get('email')
             user_password = request.POST.get('password')
@@ -35,7 +36,13 @@ def login_view(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('/manager/')
+                if request.user.manager == True:
+                    return redirect('/manager/')
+                else:
+                    #TODO 
+                    """User Homepage (no manager)"""
+                    return redirect('/employee/')
+        
             else:
                 error = 'Incorrect email/password combination.'
         
