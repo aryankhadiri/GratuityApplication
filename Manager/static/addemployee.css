@@ -1,14 +1,12 @@
-#list_item2 {
-    background-color: rgba(46, 46, 46, 0.438) !important;
+body {
+    background-color: #ffffff;
 }
 .wrapper{
     margin:2%;
     background-color: rgba(131, 78, 57, 0.198);
     padding:10%;
 }
-body{
-    background-color: rgba(211, 211, 211, 0.493);
-}
+
 .forms{
 
     background-color: red;
