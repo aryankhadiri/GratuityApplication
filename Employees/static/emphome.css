@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 #list_item1{
     background-color: rgba(46, 46, 46, 0.438) !important;
 }
@@ -9,7 +10,7 @@
     row-gap: 5%;
     
 }
-#outer-wrapper #top-section{
+#top-section{
     display: grid;
     grid-template-columns: 25% 25% 25% 25% ;
     text-align: center;
@@ -25,7 +26,6 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     column-gap: 1%;
     text-align: center;
-    background-color: rgba(112, 81, 46, 0.246);
     margin:0 2%;
 }
 #bottom-section {
@@ -33,12 +33,21 @@
 }
 #bottom-section *{
     margin-left:1%;
-    padding:0.5%;
+    padding: .5vw 0
 }
 #middle-section div{
-    background-color: white;
+    background-color: rgba(112, 81, 46, 0.126);
 }
 #names input{
     margin-top:5%;
-    padding:2%;
+}
+#middle-section input, #top-section input, #middle-section select{
+    width: 10vw;
+}
+.labels, h4{
+    font-family: "Nunito";
+    font-size: 1.2vw;
+}
+#bottom-section input, #bottom-section select{
+    width: 7vw;
 }
