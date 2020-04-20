@@ -1,13 +1,5 @@
-/*
-    var employees_info = {};
-    {% for instance in list %}
-        var name = "{{instance.name}}";
-        var point = {{instance.point}};
-        employees_info[name]=point
-    {% endfor %}
-    var x = document.getElementById("id_employee");
+
     
-    */
    function addElement(){
     var totalForms = document.getElementById("id_form-TOTAL_FORMS").value;
     //forms ids start from 0
@@ -51,22 +43,7 @@
     document.getElementById("id_form-TOTAL_FORMS").value = totalForms.toString();
    }
     
-    /*
-    for (i = 0; i<10; i++){
-    var y = x.cloneNode(true)
-    y.id = "id_employee"+i;
-
-    var z = document.getElementById("names");
-
-    z.appendChild(y);
-   
-}
-}
-var counter = 9;
-
-function add_new_employee(){
     
-}*/
  function total_cc_tip(doc){
      var cc_tip = parseInt(document.getElementById("cc_tip").value);
      var cc_t_tip = parseInt(doc.value) + cc_tip;
@@ -91,4 +68,51 @@ function shift_tip_func(doc){
     var shift_tip = parseInt(total_tip)-parseInt(doc.value);
     document.getElementById("shift_tip").value = shift_tip;
 
+}
+
+
+var dictionaryFromServer = document.getElementById("query").value
+var dictionary = JSON.parse(dictionaryFromServer);
+console.log(dictionary)
+/*
+dictionary = {'employee_id':'point'}
+*/
+/*
+function getIndexOfEmployee(doc){
+   var selectedEmployeeId = doc.value
+   var index = dictionary[selectedEmployeeId];
+   var name_input_id = doc.id;
+   console.log(name_input_id)
+   arr = name_input_id.split("-");
+   console.log(arr);
+   performance_index_id_constructor = arr[0]+"-"+arr[1]+"-point";
+   console.log(performance_index_id_constructor)
+   document.getElementById(performance_index_id_constructor).value = index
+}
+*/
+function getIndexOfEmployee(doc){
+    var selectedEmployeeId = doc.value
+    index = relativeIndexFinder(doc)
+    document.getElementById("indexes").children[index].value = dictionary[selectedEmployeeId]
+}
+function relativeIndexFinder(doc){
+    //finds out which element of the div is changing, returns the index of the element in the children array
+    var parentElement = doc.parentNode;
+    var index = Array.prototype.indexOf.call(parentElement.children, doc);
+    return index
+}
+function paidLaterCalculator(doc){
+    index = relativeIndexFinder(doc);
+    var total_tip = parseInt(document.getElementById("tips").children[index].value);
+    var paid_today = parseInt(doc.value)
+    var paid_later = total_tip-paid_today;
+    document.getElementById("paid-laters").children[index].value = paid_later
+}
+function calculateTotalIndex(doc){
+    var sum = 0;
+    var indexes = document.getElementById("indexes");
+    for (i = 1; i < indexes.children.length; i++){
+        sum += parseFloat(indexes.children[i].value);
+    }
+    doc.value = sum;
 }

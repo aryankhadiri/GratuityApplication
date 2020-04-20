@@ -98,7 +98,7 @@
             <label class = "labels", id = "cbLabel">Closed By</label>
             {{new_form.submitted_employee}}
             <label class = "labels", id = "tiLabel">Total Index</label>
-            <input type = "number" id = "total_index">
+            <input type = "number" id = "total_index" onfocus="calculateTotalIndex(this)">
             <label class = "labels", id = "tlLabel">Tip Left</label>
             <input type = "number" id = "tip_left">
             <label class = "labels", id = "clLabel">Cash Left</label>
@@ -108,11 +108,10 @@
         </div>
     </form>
     </div>
-    
+    <input  hidden readonly id = "query" readonly type = text value = "{{js_dict}}">
 </body>
 
 <script src = "{% static 'employee_home.js' %}"></script>
--->
 
 
 {% endblock %}

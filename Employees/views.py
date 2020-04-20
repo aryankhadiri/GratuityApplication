@@ -2,16 +2,17 @@ from django.shortcuts import render
 from .forms import newForm, TipForm
 from .models import Employee, Tip, Form
 from datetime import datetime
-from django.forms import modelformset_factory
+from django.forms import modelformset_factory, formset_factory
+import json
 # Create your views here.
 def home_view(request):
     
-    query = Employee.objects.all()
-    tip_form_set = modelformset_factory(Tip, exclude=('date',))
 
+    form = formset_factory(TipForm)
+    
     if request.method == 'POST':
         print(request.POST)
-        form1 = tip_form_set(request.POST)
+        form1 = form(request.POST)
 
         for f in form1:
             if f.is_valid():
@@ -32,13 +33,14 @@ def home_view(request):
             
             
         
-        
+    js_dict = sendEmployeeDataAsJSON()
+   
     new_form = newForm()
-    form = tip_form_set(queryset = Tip.objects.none())
-    
+    #form = tip_form_set(queryset = Tip.objects.none())
+    print(form)
     context = {
         'new_form':new_form,
-        'list':query,
+        'js_dict':js_dict,
         'form':form
     }
     return render(request, 'employee_home.html', context)
@@ -62,3 +64,10 @@ def home_view(request):
         e = Tip(date = date, tim_amount = tip_amount, time_frame = time_frame, paid_later = paid_later
         ,point = point, employee = employee)
         e.save()"""
+def sendEmployeeDataAsJSON():
+    query = Employee.objects.all()
+    dict = {}
+    for emp in query:
+        dict[emp.id] = emp.point
+    js_dict = json.dumps(dict)
+    return js_dict

@@ -2,13 +2,13 @@ from django import forms
 from .models import Form
 from .models import Tip
 from datetime import datetime
-
+from .models import Employee
 class TipForm(forms.ModelForm):
     
-
-    employee = forms.Select(attrs={
+    employee = forms.ModelChoiceField(queryset = Employee.objects.all(), widget = forms.Select(attrs={
         'class': 'name',
-    }) 
+        'onchange':"getIndexOfEmployee(this)"
+    }))
     time_frame = forms.Select(attrs = {
         'class': 'time_frame',
         'id': 'time_frame',
@@ -21,7 +21,8 @@ class TipForm(forms.ModelForm):
         'class': 'tip'
     }))
     paid_today = forms.FloatField(widget = forms.NumberInput(attrs={
-        'class': 'paid_today'
+        'class': 'paid_today',
+        'oninput': "paidLaterCalculator(this)"
     }))
     point = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'performance_index'
@@ -41,6 +42,7 @@ class TipForm(forms.ModelForm):
             'paid_today'
         }
 class newForm(forms.ModelForm):
+    
     date = forms.DateField(widget=forms.DateInput(attrs = {
         'class': 'Date',
         'id': 'NFdate',
