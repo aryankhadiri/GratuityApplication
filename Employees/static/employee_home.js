@@ -67,4 +67,28 @@ var counter = 9;
 function add_new_employee(){
     
 }*/
+ function total_cc_tip(doc){
+     var cc_tip = parseInt(document.getElementById("cc_tip").value);
+     var cc_t_tip = parseInt(doc.value) + cc_tip;
+     document.getElementById("Total_Tip_By_Cards").value = cc_t_tip;
+     document.getElementById("Total_Tip_By_Cards_2").value = cc_t_tip;
+ }
+function total_cash_sales(doc){
+    var cash_sales = parseInt(document.getElementById("cash_sales").value);
+    var total_cash = parseInt(doc.value) + cash_sales;
+     document.getElementById("Total_Cash").value = total_cash;
+     document.getElementById("cash_tip_2").value = parseInt(doc.value);
+}
+function total_tip(){
+   var cc_tips = document.getElementById("Total_Tip_By_Cards_2").value;
+   var cash_tip = document.getElementById("cash_tip_2").value;
+   document.getElementById("Total_Tip").value = parseInt(cc_tips)+parseInt(cash_tip)
+   document.getElementById("Total_Tip_2").value = parseInt(cc_tips)+parseInt(cash_tip)
 
+}
+function shift_tip_func(doc){
+    var total_tip = document.getElementById("Total_Tip_2").value;
+    var shift_tip = parseInt(total_tip)-parseInt(doc.value);
+    document.getElementById("shift_tip").value = shift_tip;
+
+}

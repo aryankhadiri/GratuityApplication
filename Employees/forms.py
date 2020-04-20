@@ -64,20 +64,26 @@ class newForm(forms.ModelForm):
     }))
     service_charge = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'service_charge',
-        'id': 'service_charge'
+        'id': 'service_charge',
+        'oninput':"total_cc_tip(this)",
+        'onblur':"total_cc_tip(this)"
     }))
     cash_sales = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'cash_sales',
-        'id': 'cash_sales'
+        'id': 'cash_sales',
 
     }))
     cash_tip = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'cash_tip',
-        'id': 'cash_tip'
+        'id': 'cash_tip',
+        'oninput': "total_cash_sales(this);total_tip()",
+        'onblur': "total_cash_sales(this);total_tip()"
+
     }))
     pre_shift_tip = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'pre_shift_tip',
-        'id': 'pre_shift_tip'
+        'id': 'pre_shift_tip',
+        'oninput':"shift_tip_func(this)"
     }))
     
     class Meta:
