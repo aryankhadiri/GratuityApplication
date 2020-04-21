@@ -1,5 +1,8 @@
 
-    
+var dictionaryFromServer = document.getElementById("query").value
+var dictionary = JSON.parse(dictionaryFromServer);
+
+
    function addElement(){
     var totalForms = document.getElementById("id_form-TOTAL_FORMS").value;
     //forms ids start from 0
@@ -75,25 +78,7 @@ function shift_tip_func(doc){
 }
 
 
-var dictionaryFromServer = document.getElementById("query").value
-var dictionary = JSON.parse(dictionaryFromServer);
-console.log(dictionary)
-/*
-dictionary = {'employee_id':'point'}
-*/
-/*
-function getIndexOfEmployee(doc){
-   var selectedEmployeeId = doc.value
-   var index = dictionary[selectedEmployeeId];
-   var name_input_id = doc.id;
-   console.log(name_input_id)
-   arr = name_input_id.split("-");
-   console.log(arr);
-   performance_index_id_constructor = arr[0]+"-"+arr[1]+"-point";
-   console.log(performance_index_id_constructor)
-   document.getElementById(performance_index_id_constructor).value = index
-}
-*/
+
 function getIndexOfEmployee(doc){
     var selectedEmployeeId = doc.value
     index = relativeIndexFinder(doc)
