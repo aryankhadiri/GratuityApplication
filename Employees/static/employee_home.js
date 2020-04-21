@@ -51,17 +51,19 @@ var dictionary = JSON.parse(dictionaryFromServer);
    }
     
     
- function total_cc_tip(doc){
-     var cc_tip = parseInt(document.getElementById("cc_tip").value);
-     var cc_t_tip = parseInt(doc.value) + cc_tip;
+ function total_cc_tip(){
+     var cc_tip = parseFloat(document.getElementById("cc_tip").value);
+     var service_charge = parseFloat(document.getElementById("service_charge").value);
+     var cc_t_tip = (service_charge + cc_tip).toFixed(2);
      document.getElementById("Total_Tip_By_Cards").value = cc_t_tip;
      document.getElementById("Total_Tip_By_Cards_2").value = cc_t_tip;
  }
-function total_cash_sales(doc){
-    var cash_sales = parseInt(document.getElementById("cash_sales").value);
-    var total_cash = parseInt(doc.value) + cash_sales;
+function total_cash_sales(){
+    var cash_sales = parseFloat(document.getElementById("cash_sales").value);
+    var cash_tip = parseFloat(document.getElementById("cash_tip").value);
+    var total_cash = (cash_tip + cash_sales).toFixed(2);
      document.getElementById("Total_Cash").value = total_cash;
-     document.getElementById("cash_tip_2").value = parseInt(doc.value);
+     document.getElementById("cash_tip_2").value = cash_tip
 }
 function total_tip(){
    var cc_tips = document.getElementById("Total_Tip_By_Cards_2").value;
@@ -70,9 +72,10 @@ function total_tip(){
    document.getElementById("Total_Tip_2").value = parseInt(cc_tips)+parseInt(cash_tip)
 
 }
-function shift_tip_func(doc){
-    var total_tip = document.getElementById("Total_Tip_2").value;
-    var shift_tip = parseInt(total_tip)-parseInt(doc.value);
+function shift_tip_func(){
+    var total_tip = parseFloat(document.getElementById("Total_Tip_2").value);
+    var pre_shift_tip = parseFloat(document.getElementById("pre_shift_tip").value);
+    var shift_tip = (total_tip-pre_shift_tip).toFixed()
     document.getElementById("shift_tip").value = shift_tip;
 
 }

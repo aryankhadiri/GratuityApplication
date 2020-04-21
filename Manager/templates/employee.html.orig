@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    {% load static %}
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'addemployee.css' %}">
+<<<<<<< HEAD
+</header>
+    <form method="POST" class="post-form">
+        {% include 'alert.html' %}
+        {% csrf_token %}
+        <div class="wrapper">
+            <div class = "forms">
+                <div class = "labels-div">
+            <label class = "labels" for="name"> Name:</label><br>
+            <label  class = "labels" for= "point"> Point:</label><br>
+            <label  class = "labels" for="phone"> Phone Number:</label><br>
+            </div>
+            <div class = "textfield-div">
+            {{ form.name }}<br>
+            {{ form.point }}<br>
+            {{ form.phone }}<br>
+=======
+</head>
+<!-- main content-->
+<h4>Add Employee</h4>
+<form method="POST" class="post-form">
+    {% include 'alert.html' %}
+    {% csrf_token %}
+    <div class="wrapper">
+        <div class="forms">
+            {{ form.name }}
+            {{ form.point }}
+            {{ form.phone }}
+>>>>>>> master
+        </div>
+        <div class="form-buttons center-align">
+            <button type="submit" name="save_button" class="save">Save</button>
+            <button type="submit" name="cancel_button" class="cancel" formnovalidate>Cancel</button>
+        {% if title == "Update Employee Information" %}
+            <button type="submit" name="delete_button" class="delete">Delete</button>
+        {% endif %}
+        </div>
+    </div>
+</form>
+<!-- end main content-->
+{% endblock %}
