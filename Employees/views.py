@@ -12,7 +12,6 @@ from django.template import RequestContext
 def home_view(request):
     
     js_dict = sendEmployeeDataAsJSON()
-    new_form = newForm()
     form = formset_factory(TipForm)
     
     if request.method == 'POST':
@@ -20,10 +19,14 @@ def home_view(request):
         new_form= newForm(request.POST)
         if form1.is_valid() and form1.has_changed():   
             for f in form1:
+                print(f)
                 new_instance = f.save(commit=False)
                 new_instance.date = request.POST.get('date')
                 new_instance.time_frame = request.POST.get('time_frame')
                 new_instance.save()
+                
+            messages.success(request, "The Tips have been successfully saved!")
+
         else:
             messages.error(request, form1.errors)
             return render(request, 'employee_home.html', {'form':form1, 'new_form':new_form,
@@ -33,12 +36,16 @@ def home_view(request):
             new_instance2 = new_form.save(commit = False)
             new_instance2.time = datetime.now().time()
             new_instance2.save()
+            messages.success(request, "The form has been successfully saved!")
         else:
-            print(new_form.errors)
+            messages.error(request, new_form.errors)
+            return render(request, 'employee_home.html',{'form':form1, 'new_form':new_form,
+            'js_dict':js_dict})
             
             
         
-    
+    new_form = newForm()
+
     #form = tip_form_set(queryset = Tip.objects.none())
     print(form)
     context = {

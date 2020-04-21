@@ -7,13 +7,17 @@
     var new_row_employee = existing_row_employee.cloneNode(true);
     new_row_employee.id = "id_form-" + totalForms + "-employee";
     new_row_employee.name = "form-" + totalForms + "-employee";
+    var delete_option = document.createElement('option');
+    delete_option.appendChild(document.createTextNode("Delete"));
+    delete_option.value = "delete";
+    new_row_employee.appendChild(delete_option);
     document.getElementById("names").appendChild(new_row_employee);
     
     var existing_row_point = document.getElementById("id_form-0-point");
     var new_row_point = existing_row_point.cloneNode(true);
     new_row_point.id = "id_form-" + totalForms + "-point";
     new_row_point.name = "form-" + totalForms + "-point";
-    new_row_point.value = null;
+    new_row_point.value = 0;
 
     document.getElementById("indexes").appendChild(new_row_point);
     
@@ -21,21 +25,21 @@
     var new_row_tip = existing_row_tip.cloneNode(true);
     new_row_tip.id = "id_form-" + totalForms + "-tip_amount";
     new_row_tip.name = "form-" + totalForms + "-tip_amount";
-    new_row_tip.value = null;
+    new_row_tip.value = 0;
     document.getElementById("tips").appendChild(new_row_tip);
 
     var existing_row_paid_today = document.getElementById("id_form-0-paid_today");
     var new_row_paid_today = existing_row_paid_today.cloneNode(true);
     new_row_paid_today.id = "id_form-" + totalForms + "-paid_today";
     new_row_paid_today.name = "form-" + totalForms + "-paid_today";
-    new_row_paid_today.value = null;
+    new_row_paid_today.value = 0;
     document.getElementById("paid-todays").appendChild(new_row_paid_today);
 
     var existing_row_paid_later = document.getElementById("id_form-0-paid_later");
     var new_row_paid_later = existing_row_paid_later.cloneNode(true);
     new_row_paid_later.id = "id_form-" + totalForms + "-paid_later";
     new_row_paid_later.name = "form-" + totalForms + "-paid_later";
-    new_row_paid_later.value = null;
+    new_row_paid_later.value = 0;
 
     document.getElementById("paid-laters").appendChild(new_row_paid_later);
 
@@ -178,4 +182,33 @@ function validate(){
     return true
 }
 }
+function checkToDelete(doc){
+    if (doc.value == "delete"){
+        var index = relativeIndexFinder(doc)
+        var relative_performance_index = document.getElementById("indexes").children[index];
+        var relative_tip = document.getElementById("tips").children[index];
+        var relative_paid_today = document.getElementById("paid-todays").children[index];
+        var relative_paid_later = document.getElementById("paid-laters").children[index];
+        doc.remove()
+        relative_paid_later.remove()
+        relative_paid_today.remove()
+        relative_tip.remove()
+        relative_performance_index.remove()
+        document.getElementById("id_form-TOTAL_FORMS").value -=1;
 
+
+    }
+}
+function calculateCashLeft()
+{
+    var paid_todays = document.getElementById("paid-todays");
+    var sum = 0;
+    for (i = 1; i < paid_todays.children.length; i++){
+        var value = parseInt(paid_todays.children[i].value);
+        sum += value;
+    }
+    var total_cash = parseFloat(document.getElementById("Total_Cash").value).toFixed(2);
+    var cash_left = total_cash - sum;
+    document.getElementById("cash_left").value = cash_left;  
+    
+}
