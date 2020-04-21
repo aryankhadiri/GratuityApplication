@@ -16,7 +16,12 @@
         </div>
         <div class="col s6 m6" id="corner-menu">
             <ul>
-                <li><button id="logout">Log Out</button>
+               <li><Button id="logout" onclick = "javascript:{document.getElementById('logOut').submit()}"> 
+                     Log Out
+                </Button>
+                <form action = "{% url 'logout' %}" method = "POST" id = "logOut">
+                    {% csrf_token %}
+                </form>
             </ul>
         </div>
     </div>
