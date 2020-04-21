@@ -114,5 +114,68 @@ function calculateTotalIndex(doc){
     for (i = 1; i < indexes.children.length; i++){
         sum += parseFloat(indexes.children[i].value);
     }
-    doc.value = sum;
+    doc.value = sum.toFixed(2);
 }
+function calculateTips(){
+    var tips = document.getElementById("tips");
+    if (document.getElementById("total_index").value.length == 0){
+        alert("Enter the Total Index first. ");
+    }
+    else if(document.getElementById("shift_tip").value.length == 0){
+        alert("Make sure the shift field is entered!");
+    }
+    else{
+    var total_index = parseFloat(document.getElementById("total_index").value).toFixed(2);
+    var shift_tip = parseFloat(document.getElementById("shift_tip").value).toFixed(2);
+    var singlePoint = shift_tip/total_index;
+    var indexes = document.getElementById("indexes");
+    for (i = 1; i<tips.children.length; i++){
+        var performance_index = indexes.children[i].value;
+        if(performance_index.length == 0){
+            alert("Enter the employees info and their indexes first");
+            return 0;
+        }
+        tips.children[i].value = parseInt(performance_index * singlePoint);
+    }
+    calculateTipLeft();
+}
+}
+function calculateTipLeft()
+{
+    var tips = document.getElementById("tips");
+    var sum = 0;
+    for (i = 1; i < tips.children.length; i++){
+        var value = parseInt(tips.children[i].value);
+        sum += value;
+    }
+    var shift_tip = parseFloat(document.getElementById("shift_tip").value).toFixed(2);
+    var tip_left = shift_tip - sum;
+    document.getElementById("tip_left").value = tip_left;  
+    
+}
+function validate(){
+    
+    var elements = document.getElementById("form").elements
+    error = 0
+    var invalid_ids = [];
+    for (element in elements){
+        if (elements[element].value===""){
+            error += 1;
+            invalid_ids.push(elements[element].id);
+        }  
+    }  
+    if (error != 0){
+    alert("Not all the fields have been filled");
+
+    for (id in invalid_ids){
+        var x = document.getElementById(invalid_ids[id]);
+        x.style = "background-color:red;"
+    }
+    return false;
+
+    }
+    else{
+    return true
+}
+}
+

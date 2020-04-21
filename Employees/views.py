@@ -1,29 +1,34 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import newForm, TipForm
 from .models import Employee, Tip, Form
 from datetime import datetime
 from django.forms import modelformset_factory, formset_factory
 import json
+from django.contrib import messages
+from django.template import RequestContext
+
+
 # Create your views here.
 def home_view(request):
     
-
+    js_dict = sendEmployeeDataAsJSON()
+    new_form = newForm()
     form = formset_factory(TipForm)
     
     if request.method == 'POST':
-        print(request.POST)
         form1 = form(request.POST)
-
-        for f in form1:
-            if f.is_valid():
+        new_form= newForm(request.POST)
+        if form1.is_valid() and form1.has_changed():   
+            for f in form1:
                 new_instance = f.save(commit=False)
                 new_instance.date = request.POST.get('date')
                 new_instance.time_frame = request.POST.get('time_frame')
                 new_instance.save()
-            else:
-                print(f.errors)
-        new_form= newForm(request.POST)
-        print(new_form)
+        else:
+            messages.error(request, form1.errors)
+            return render(request, 'employee_home.html', {'form':form1, 'new_form':new_form,
+            'js_dict':js_dict})
+        
         if new_form.is_valid():
             new_instance2 = new_form.save(commit = False)
             new_instance2.time = datetime.now().time()
@@ -33,9 +38,7 @@ def home_view(request):
             
             
         
-    js_dict = sendEmployeeDataAsJSON()
-   
-    new_form = newForm()
+    
     #form = tip_form_set(queryset = Tip.objects.none())
     print(form)
     context = {

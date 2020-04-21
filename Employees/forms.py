@@ -18,7 +18,8 @@ class TipForm(forms.ModelForm):
         'class': 'point'
     }))
     tip_amount = forms.FloatField(widget = forms.NumberInput(attrs={
-        'class': 'tip'
+        'class': 'tip',
+        'oninput':'calculateTipLeft()'
     }))
     paid_today = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'paid_today',

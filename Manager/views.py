@@ -26,7 +26,7 @@ def add_employee_view(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if request.POST.get('cancel_button') == '':
-                return redirect('home')
+            return redirect('home')
         if form.is_valid():
              
             name = request.POST['name']
