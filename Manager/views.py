@@ -33,6 +33,8 @@ def add_employee_view(request):
                 return redirect('add_employee')
         else:
             messages.error(request, 'The form is invalid.')
+            return redirect('add_employee')
+
 
         context = {
             'title': title,

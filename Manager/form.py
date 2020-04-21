@@ -9,7 +9,7 @@ class EmployeeForm(forms.ModelForm):
         'Class':'nameField',
         'id':'nameField',
         'placeholder': 'Name'}))
-    point = forms.FloatField(widget = forms.TextInput(attrs={
+    point = forms.FloatField(widget = forms.NumberInput(attrs={
         'Class':'pointField',
         'id':'pointField',
         'placeholder': 'Point Index'}))
