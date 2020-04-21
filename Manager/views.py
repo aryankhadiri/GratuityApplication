@@ -9,20 +9,27 @@ from django.contrib.auth.decorators import login_required
 #@login_required
 
 def home_view(request):
+<<<<<<< HEAD
     if request.user.manager == False:
         return redirect('/employee/')
     Hello = 'Hello Boys..Welcome!'
+=======
+    title = 'Dashboard | Home'
+>>>>>>> master
     context = {
-        'Hello':Hello
-        
+        'title': title
     }
     return render(request, 'home.html', context)
 #@login_required
 #login_required is functional, just commented out for development process
 def add_employee_view(request):
+<<<<<<< HEAD
     if request.user.manager == False:
         return redirect('/employee/')
     title = 'Adding Employee'
+=======
+    title = 'Dashboard | Add Employee'
+>>>>>>> master
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if request.POST.get('cancel_button') == '':
@@ -39,7 +46,13 @@ def add_employee_view(request):
                 return redirect('add_employee')
         else:
             messages.error(request, 'The form is invalid.')
+            return redirect('add_employee')
 
+
+        context = {
+            'title': title,
+            'form': form
+        }
         return render(request, 'employee.html', context)
     
     form = EmployeeForm()

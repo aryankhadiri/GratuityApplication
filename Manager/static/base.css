@@ -1,12 +1,123 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
-#nav{
-    background-color: rgba(124, 60, 7, 0.513);
-    padding:.5%;
-    text-align: center;
-    
+body {
+    font-family: Lato !important;
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
 }
 
+h1 {
+    font-size: 32px !important;
+}
+
+h3 {
+    padding-top: 5px;
+    font-size: 1.17rem !important;
+}
+
+h1, h3 {
+    color: #060c28;
+    margin: 5px !important;
+}
+
+#corner-menu ul {
+    display: flex;
+    float: right;
+}
+
+#corner-menu ul li {
+    padding: 5px;
+}
+
+#corner-menu button#logout {
+    border: transparent !important;
+    background-color: transparent !important;
+    font-family: Lato;
+    cursor: pointer !important;
+    font-size: 18px;
+}
+
+#corner-menu button#logout::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 1.5px;
+    border-bottom: 1px solid #000000;
+    transition: width 450ms ease;
+}
+
+#corner-menu button#logout:hover::after{
+    width: 5rem;
+    transition: width 450ms ease;
+}
+
+h3::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 8rem;
+    height: 1.5px;
+    border-bottom: 1px solid #000000;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 15rem;
+    height: 1.5px;
+    border-bottom: 1.5px solid #000000;
+}
+
+#navbar {
+    background-color: #ffffff;
+}
+
+nav {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+#nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20vh);
+}
+
+#nav ul li a {
+    color: #000000;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: lighter;
+}
+
+#nav ul li a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 1.5px;
+    border-bottom: 1px solid #000000;
+    transition: width 450ms ease;
+}
+
+#nav ul li a:hover {
+    background-color: rgba(0,0,0,0);
+}
+
+#nav ul li a:hover::after{
+    width: 15rem;
+    transition: width 450ms ease;
+}
+
+#main-content {
+    height: 85vh;
+}
+
+/*
 #list li {
     display: inline-block;
     background-color: rgba(41, 20, 4, 0.602);
@@ -32,3 +143,4 @@
 body{
     margin:0;
 }
+*/

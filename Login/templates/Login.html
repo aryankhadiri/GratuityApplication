@@ -6,11 +6,14 @@
             <title>Login | Chelokababi Restaurant</title>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <!-- font awesome import-->
-            <script src="https://kit.fontawesome.com/60c36ce90b.js" crossorigin="anonymous"></script>
-            <!-- custom css import-->
-            {% load static %}
-            <link rel="stylesheet" href="{% static 'stylesheets/login.css' %}" type="text/css">
+
+            <!-- IMPORTS-->
+                <!-- font awesome import-->
+                <script src="https://kit.fontawesome.com/60c36ce90b.js" crossorigin="anonymous"></script>
+                <!-- custom css import-->
+                {% load static %}
+                <link rel="stylesheet" href="{% static 'stylesheets/login.css' %}" type="text/css">
+
         </head>
         <!-- end of file head-->
 
@@ -30,7 +33,6 @@
                         {% csrf_token %}
                         <fieldset>
                             {{ form.non_field_errors }}
-
                             <div class="email">
                                 <span id="email-icon">
                                     {{ form.email.errors }}
@@ -38,7 +40,6 @@
                                     {{ form.email }}
                                 </span>
                             </div>
-
                             <div class="password">
                                 <span id="password-icon">
                                     {{ form.password.errors }}

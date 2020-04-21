@@ -1,12 +1,33 @@
 {% extends 'base.html' %}
+
 {% block content %}
- <header>
-    {% load static %}
-    <link rel = "stylesheet" type = "text/css" href = "{% static 'home.css' %}">
- </header>
-    <div>
-            {% csrf_token %}
-            <p>{{Hello}}</p>
-    </div>
-   
+<head>
+   {% load static %}
+   <link rel = "stylesheet" type = "text/css" href = "{% static 'home.css' %}">
+</head>
+
+<!-- main content-->
+<h4>Recent Forms</h4>
+<div class="center-align" id="recent-forms">
+   <table>
+      <!-- table headers-->
+      <tr id="header">
+         <th>Employee</th>
+         <th>Time</th>
+         <th>Date</th>
+      </tr>
+      <!-- table cells; placeholder text-->
+      <tr>
+         <td>Joe</td>
+         <td>4:20 p.m.</td>
+         <td>4/20/2020</td>
+      </tr>
+      <tr>
+         <td>Jack</td>
+         <td>4:25 p.m.</td>
+         <td>4/25/2020</td>
+      </tr>
+   </table>
+</div>
+<!-- end main content-->
 {% endblock %}
