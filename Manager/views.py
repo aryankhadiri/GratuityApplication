@@ -9,14 +9,17 @@ from django.contrib.auth.decorators import login_required
 #@login_required
 def home_view(request):
     title = 'Dashboard | Home'
+    page = "Home"
     context = {
-        'title': title
+        'title': title,
+        'page': page
     }
     return render(request, 'home.html', context)
 #@login_required
 #login_required is functional, just commented out for development process
 def add_employee_view(request):
     title = 'Dashboard | Add Employee'
+    page = 'Add Employee'
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if request.POST.get('cancel_button') == '':
@@ -36,21 +39,27 @@ def add_employee_view(request):
 
         context = {
             'title': title,
+            'page': page,
             'form': form
         }
         return render(request, 'employee.html', context)
     
     form = EmployeeForm()
     context = {
-        'form':form,
-        'title':title
+        'title': title,
+        'page': page,
+        'form': form
     }
     return render(request, 'employee.html', context)
     
 def list_employee_view(request):
+    title = 'Dashboard | Edit Employee'
+    page = "Edit Employee"
     queryset = Employee.objects.all()
     context = {
-        "list":queryset
+        "list": queryset,
+        "title": title,
+        "page": page
     }
     return render (request,'list.html', context)
 
