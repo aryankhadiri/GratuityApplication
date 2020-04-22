@@ -1,3 +1,7 @@
 #main-content #recent-forms tr#header {
     border-bottom: 1px solid #000000;
 }
+#period_selector .date_label{
+    font-size: 1em;
+    color:rgba(12, 8, 8, 0.411)
+}

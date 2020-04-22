@@ -8,25 +8,37 @@
 
 <!-- main content-->
 <h4>Recent Forms</h4>
+<div id = "period_selector">
+   <form method = 'POST'>
+      {% csrf_token %}
+      
+      <label class = "date_label" id = "start_date_label"> Start Date</label>
+      <input class = "dates" type = "date" name = "start_date_input" id = "start_date_input" required>
+      
+      <label class = "date_label" for = "end_date_input" id = "end_date_label"> End Date</label>
+      <input class = "dates" type = "date" name = "end_date_input" id = "end_date_input" required>
+      
+      <input type = "submit" value = "Search">
+   </form>
+</div>
 <div class="center-align" id="recent-forms">
+   
    <table>
       <!-- table headers-->
       <tr id="header">
-         <th>Employee</th>
-         <th>Time</th>
          <th>Date</th>
+         <th>Time Frame</th>
+         <th>Who Submitted</th>
       </tr>
       <!-- table cells; placeholder text-->
+{% for form in allForms %}
       <tr>
-         <td>Joe</td>
-         <td>4:20 p.m.</td>
-         <td>4/20/2020</td>
+         <td>{{form.date}}</td>
+         <td>{{form.time_frame}}</td>
+         <td>{{form.submitted_employee}}</td>
       </tr>
-      <tr>
-         <td>Jack</td>
-         <td>4:25 p.m.</td>
-         <td>4/25/2020</td>
-      </tr>
+{% endfor %}
+      
    </table>
 </div>
 <!-- end main content-->
