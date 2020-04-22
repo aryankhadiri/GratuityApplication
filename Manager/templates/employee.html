@@ -4,6 +4,9 @@
 <head>
     {% load static %}
     <link rel = "stylesheet" type = "text/css" href = "{% static 'addemployee.css' %}">
+    <script>
+        var page = '{{ page }}';
+    </script>
 </head>
 <!-- main content-->
 <h4>Add Employee</h4>
@@ -18,7 +21,7 @@
         </div>
         <div class="form-buttons center-align">
             <button type="submit" name="save_button" class="save">Save</button>
-            <button type="submit" name="cancel_button" class="cancel" formnovalidate>Cancel</button>
+            <button type="submit" name="cancel_button" class="cancel" formnovalidate>Cancel</button><br>
         {% if title == "Update Employee Information" %}
             <button type="submit" name="delete_button" class="delete">Delete</button>
         {% endif %}

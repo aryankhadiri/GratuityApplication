@@ -94,6 +94,15 @@ nav {
     font-weight: lighter;
 }
 
+#nav ul li a.active::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 17.5rem;
+    height: 1.5px;
+    border-bottom: 1px solid #000000;
+}
+
 #nav ul li a::after {
     content: '';
     display: block;
@@ -109,12 +118,63 @@ nav {
 }
 
 #nav ul li a:hover::after{
-    width: 15rem;
+    width: 17.5rem;
     transition: width 450ms ease;
 }
 
 #main-content {
     height: 85vh;
+}
+
+@media only screen and (max-width: 992px) {
+    #nav ul {
+        flex-direction: row !important;
+        transform: none !important;
+        justify-content: center;
+        border: 1px solid black;
+    }
+
+    #nav ul li a {
+        font-size: 14px;
+        transform: translateY(0);
+        transition: transform 450ms ease;
+    }
+
+    #nav ul li a.active::after {
+        border-bottom: none;
+    }
+
+    #nav ul li a.active {
+        text-decoration: underline
+    }
+
+    #nav ul li a:hover::after {
+        width: 0;
+    }
+
+    #nav ul li a:hover {
+        transform: translateY(-3px);
+        transition: all 450ms ease;
+    }
+
+    #nav ul li .fas {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 561px) {
+    #nav ul li a {
+        font-size: 11px;
+    }
+
+    #nav ul li a.active::after {
+        border-bottom: none;
+    }
+
+    #nav ul li a:hover {
+        transform: translateY(-2px);
+        transition: all 450ms ease;
+    }
 }
 
 /*
