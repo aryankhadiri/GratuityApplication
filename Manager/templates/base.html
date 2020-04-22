@@ -2,8 +2,13 @@
     <head>
         <title>{{ title }}</title>
         {% load static %}
+        <!-- stylsheets-->
         <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- scripts-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <script src="{% static 'activeLink.js' %}"></script>
         <!-- font awesome import-->
         <script src="https://kit.fontawesome.com/60c36ce90b.js" crossorigin="anonymous"></script>
     </head>
@@ -30,10 +35,10 @@
     <!-- second row, consists of the side navigation bar and the page's main content-->
     <div class="row">
         <!-- navigation sidebar-->
-        <div class="col m4 l4 hide-on-med-and-down" id="sidenav">
+        <div class="col s12 m12 l4" id="sidenav">
             <nav id="nav">
                 <ul>
-                    <li id="list_item1"><span><a class="active" href="/manager/homepage"><i class="fas fa-home fa-fw"></i>
+                    <li id="list_item1"><span><a href="/manager/homepage"><i class="fas fa-home fa-fw"></i>
                         Home</a></span></li>
                     <li id="list_item2"><span><a href="/manager/addemployee"><i class="fas fa-user fa-fw"></i>
                         Add New Employee</a></span></li>

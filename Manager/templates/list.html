@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<header>
-  <title>Edit Employees Information</title>
+<head>
   {% load static %}
     <link rel = "stylesheet" type = "text/css" href = "{% static 'editemployee.css' %}">
-</header>
+    <script>
+      var page = '{{ page }}';
+    </script>
+</head>
 <table style = "border:solid">
   <th>Employees</th>
   <th>Point</th>
