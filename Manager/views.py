@@ -5,8 +5,7 @@ from Employees.models import Tip, Form
 from django.contrib import messages
 from .form import EmployeeForm
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
-from datetime import timedelta
+from django.contrib.auth import logout
 
 # Create your views here.
 #@login_required
@@ -102,3 +101,7 @@ def update_employee_view(request, id=id):
     }
     return render(request,'employee.html', context)
     
+def logout_view(request):
+    if request.method=='POST':
+        logout(request)
+        return redirect ('login')
