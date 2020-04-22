@@ -27,7 +27,9 @@ def home_view(request):
     #fetch all the forms submitted between week ago and today. 
     context = {
         'title': title,
+        "page": page,
         'allForms':allForms
+    }
     return render(request, 'home.html', context)
 #@login_required
 #login_required is functional, just commented out for development process
