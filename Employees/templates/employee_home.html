@@ -4,7 +4,6 @@
 <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'emphome.css' %}">
-    <script src="{% static 'employee_home.js' %}"></script>
 </head>
 
 <!-- main content-->
@@ -146,8 +145,10 @@
     
 
     </div>
+    <input hidden readonly id="query" type="text" value="{{js_dict}}">
 </form>
 
-<input type="hidden" readonly id="query" readonly type="text" value="{{ js_dict }}">
+<script src="{% static 'employee_home.js' %}"></script>
+
 <!-- end main content-->
 {% endblock %}
