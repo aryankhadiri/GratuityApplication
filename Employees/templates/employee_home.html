@@ -4,9 +4,12 @@
 <head>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'emphome.css' %}">
+<<<<<<< HEAD
     <script>
         var page = "{{ page }}";
     </script>
+=======
+>>>>>>> 2d722039d7ab375e4d4f579725919c6223ef828d
 </head>
 
 <!-- main content-->
@@ -149,10 +152,16 @@
     
 
     </div>
+    <input hidden readonly id="query" type="text" value="{{js_dict}}">
 </form>
 
+<<<<<<< HEAD
 <input type="hidden" readonly id="query" readonly type="text" value="{{ js_dict }}">
 
 <script src="{% static 'employee_home.js' %}"></script>
+=======
+<script src="{% static 'employee_home.js' %}"></script>
+
+>>>>>>> 2d722039d7ab375e4d4f579725919c6223ef828d
 <!-- end main content-->
 {% endblock %}

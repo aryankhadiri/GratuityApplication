@@ -14,7 +14,6 @@ def home_view(request):
     page = "New Form"
     js_dict = sendEmployeeDataAsJSON()
     form = formset_factory(TipForm)
-    
     if request.method == 'POST':
         form1 = form(request.POST)
         new_form= newForm(request.POST)
