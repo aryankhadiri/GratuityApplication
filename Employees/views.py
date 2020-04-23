@@ -37,6 +37,7 @@ def home_view(request):
             new_instance2.time = datetime.now().time()
             new_instance2.save()
             messages.success(request, "The form has been successfully saved!")
+            return redirect('home')
         else:
             messages.error(request, new_form.errors)
             return render(request, 'employee_home.html',{'form':form1, 'new_form':new_form,
