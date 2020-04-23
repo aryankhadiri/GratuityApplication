@@ -1,21 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
-#list_item1{
-    background-color: rgba(46, 46, 46, 0.438) !important;
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+#nav ul {
+    transform: translateY(30vh);
 }
+
+#top-section, #second-section, #third-section, #bottom-section {
+    margin-bottom: 35px;
+}
+
+label.readonly {
+    color: #000000;
+}
+
+input:not(:read-only):hover {
+    border-bottom: 1px solid #000000;
+}
+
+input:not(:read-only):hover {
+    border-bottom: 1px solid #000000;
+}
+
+input:read-only {
+    border-bottom: 1px solid #000000 !important;
+}
+
+input:read-only:hover {
+    cursor: default;
+}
+
+#add-button, #calculate-tips, #form-submit {
+    background: transparent;
+    border: 1px solid black;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (min-width: 0) {
+    .s5ths {
+        width: 20%;
+    }
+}
+
+/*
 #outer-wrapper{
     display: grid;
     grid-template-rows: 4fr 9fr .5fr 4fr;
     background-color: rgba(226, 161, 87, 0.116);
     margin:5%;
-    
-    
 }
 #top-section{
     display: grid;
     grid-template-columns: 25% 25% 25% 25% ;
     text-align: center;
     padding:2%;
-
 }
 #top-section div *{
     padding:2%;
@@ -44,8 +80,8 @@
 #middle-section input, #top-section input, #middle-section select{
     width: 10vw;
 }
-.labels, h4{
-    font-family: "Nunito";
+.labels {
+    font-family: Lato;
     font-size: 1.2vw;
 }
 #bottom-section input, #bottom-section select{

@@ -1,23 +1,54 @@
 <html>
     <head>
+        <title>{{ title }}</title>
         {% load static %}
-        <link rel = "stylesheet" type = "text/css" href = "{% static 'base.css' %}">
+        <!-- stylsheets-->
+        <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- scripts-->
+        <!-- font awesome import-->
+        <script src="https://kit.fontawesome.com/60c36ce90b.js" crossorigin="anonymous"></script>
     </head>
-    <header>
-        <nav id = "nav">
-            <ul id = "list">
-                <li id = "list_item1"><a href = "/employee/homepage">New Form</a></li>
-                <li id = "list_item2"><a href = "">Submitted Form</a></li>
+
+    <!-- top row, consists of the dashboard title and the other page features (such as logout)-->
+    <div class="row">
+        <div class="col s6 m6" id="page-info">
+            <h3>Employee //</h3>
+            <h1>Dashboard</h1>
+        </div>
+        <div class="col s6 m6" id="corner-menu">
+            <ul>
+                <li><button id="logout">Log Out</button></li>
             </ul>
-        </nav>
-    
-</header>
+        </div>
+    </div>
 
-<body>
-{% block content %}
-{% endblock %}
+    <!-- second row, consists of the side navigation bar and the page's main content-->
+    <div class="row" id="main-section-wrapper">
+        <!-- navigation sidebar-->
+        <div class="col s12 m12 l4" id="sidenav">
+            <nav id="nav">
+                <ul>
+                    <li id="list_item1"><span><a href="/employee/homepage"><i class="far fa-file"></i>
+                        New Form</a></span></li>
+                    <li id="list_item2"><span><a href=""><i class="far fa-folder"></i>
+                        Submitted Forms</a></span></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- end navigation sidebar-->
 
+        <!-- main content-->
+        <div class="col s12 m12 l8" id="main-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <!-- end main content-->
+    </div>
+    <!-- end second row-->
 
-</body>
+    <body>
+    </body>
+
 </html>
 

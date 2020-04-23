@@ -11,17 +11,17 @@
 
 <!-- main content-->
 <h4>Recent Forms</h4>
-<div id = "period_selector">
-   <form method = 'POST'>
+<div id="period_selector">
+   <form method="POST">
       {% csrf_token %}
       
-      <label class = "date_label" id = "start_date_label"> Start Date</label>
-      <input class = "dates" type = "date" name = "start_date_input" id = "start_date_input" required>
+      <label class="date_label" id="start_date_label"> Start Date</label>
+      <input class="dates" type="date" name="start_date_input" id="start_date_input" required>
       
-      <label class = "date_label" for = "end_date_input" id = "end_date_label"> End Date</label>
-      <input class = "dates" type = "date" name = "end_date_input" id = "end_date_input" required>
+      <label class="date_label" for="end_date_input" id="end_date_label"> End Date</label>
+      <input class="dates" type="date" name="end_date_input" id="end_date_input" required>
       
-      <input type = "submit" value = "Search">
+      <input type="submit" value="Search">
    </form>
 </div>
 <div class="center-align" id="recent-forms">

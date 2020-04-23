@@ -9,6 +9,13 @@ body {
     transition: border-bottom 450ms ease;
 }
 
+.forms input[type="number"] {
+    margin-top: 17.5px;
+    font-size: 18.5px;
+    border-bottom: 1px solid rgba(158, 158, 158, 0.5);
+    transition: border-bottom 450ms ease;
+}
+
 .forms #nameField:focus {
     border-bottom: 1px solid #000000 !important;
     box-shadow: 0 0.5px 0 0 #000000;

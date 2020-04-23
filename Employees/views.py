@@ -10,7 +10,7 @@ from django.template import RequestContext
 
 # Create your views here.
 def home_view(request):
-    
+    title = 'Dashboard | Employee'
     js_dict = sendEmployeeDataAsJSON()
     form = formset_factory(TipForm)
     
@@ -49,6 +49,7 @@ def home_view(request):
     #form = tip_form_set(queryset = Tip.objects.none())
     print(form)
     context = {
+        'title': title,
         'new_form':new_form,
         'js_dict':js_dict,
         'form':form
