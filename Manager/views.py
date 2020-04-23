@@ -102,3 +102,31 @@ def update_employee_view(request, id=id):
     }
     return render(request,'employee.html', context)
     
+def weekly_report_view(request):
+    title = "Weekly Reports"
+
+
+
+
+    today_day = datetime.today().weekday()
+    today_date = datetime.today().date()
+    first_date_of_week = today_date - timedelta(today_day)
+    last_date_of_week = first_date_of_week + timedelta(7)
+    days_dates=[]
+    for i in range(0,7):
+        days_dates.append(first_date_of_week+timedelta(i))
+
+    tips = Tip.objects.filter(date__lte = last_date_of_week).filter(date__gte=first_date_of_week).order_by('employee__name')
+    employees = Employee.objects.all().order_by('name')
+    
+                
+    
+    context = {
+        'title':title,
+        'tips':tips,
+        'employees':employees,
+        'days_dates':days_dates
+    }
+    for tip in tips:
+        print(tip.employee)
+    return render(request, 'weekly_reports.html', context)
