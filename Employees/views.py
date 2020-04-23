@@ -6,6 +6,7 @@ from django.forms import modelformset_factory, formset_factory
 import json
 from django.contrib import messages
 from django.template import RequestContext
+from django.contrib.auth import logout
 
 
 # Create your views here.
@@ -84,3 +85,8 @@ def sendEmployeeDataAsJSON():
         dict[emp.id] = emp.point
     js_dict = json.dumps(dict)
     return js_dict
+
+def logout_employee(request):
+    if request.method=='POST':
+        logout(request)
+        return redirect ('login')
