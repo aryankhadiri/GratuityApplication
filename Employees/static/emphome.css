@@ -28,6 +28,10 @@ input:read-only:hover {
     cursor: default;
 }
 
+select {
+    display: block !important;
+}
+
 #add-button, #calculate-tips, #form-submit {
     background: transparent;
     border: 1px solid black;
