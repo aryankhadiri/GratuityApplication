@@ -6,8 +6,8 @@
         <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <!-- scripts-->
-        <!-- font awesome import-->
-        <script src="https://kit.fontawesome.com/60c36ce90b.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <script src="{% static 'activeLink.js' %}"></script>
     </head>
 
     <!-- top row, consists of the dashboard title and the other page features (such as logout)-->
@@ -29,10 +29,8 @@
         <div class="col s12 m12 l4" id="sidenav">
             <nav id="nav">
                 <ul>
-                    <li id="list_item1"><span><a href="/employee/homepage"><i class="far fa-file"></i>
-                        New Form</a></span></li>
-                    <li id="list_item2"><span><a href=""><i class="far fa-folder"></i>
-                        Submitted Forms</a></span></li>
+                    <li id="list_item1"><span><a href="/employee/homepage">New Form</a></span></li>
+                    <li id="list_item2"><span><a href="">Submitted Forms</a></span></li>
                 </ul>
             </nav>
         </div>

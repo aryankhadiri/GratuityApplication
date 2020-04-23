@@ -92,6 +92,7 @@ nav {
     font-size: 18px;
     text-decoration: none;
     font-weight: lighter;
+    border-left: 1px solid #000000;
 }
 
 #nav ul li a.active::after {
@@ -139,6 +140,7 @@ nav {
         font-size: 14px;
         transform: translateY(0);
         transition: transform 450ms ease;
+        border-left: none;
     }
 
     #nav ul li a.active::after {

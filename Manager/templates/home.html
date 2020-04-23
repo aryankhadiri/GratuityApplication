@@ -20,8 +20,10 @@
       
       <label class="date_label" for="end_date_input" id="end_date_label"> End Date</label>
       <input class="dates" type="date" name="end_date_input" id="end_date_input" required>
-      
-      <input type="submit" value="Search">
+
+      <div class="center-align">
+         <input type="submit" value="Search">
+      </div>
    </form>
 </div>
 <div class="center-align" id="recent-forms">
@@ -33,12 +35,12 @@
          <th>Time Frame</th>
          <th>Who Submitted</th>
       </tr>
-      <!-- table cells; placeholder text-->
+      <!-- table cells-->
 {% for form in allForms %}
       <tr>
-         <td>{{form.date}}</td>
-         <td>{{form.time_frame}}</td>
-         <td>{{form.submitted_employee}}</td>
+         <td>{{ form.date }}</td>
+         <td>{{ form.time_frame }}</td>
+         <td>{{ form.submitted_employee }}</td>
       </tr>
 {% endfor %}
       

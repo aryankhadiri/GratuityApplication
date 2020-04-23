@@ -8,15 +8,20 @@
       var page = '{{ page }}';
     </script>
 </head>
-<table style = "border:solid">
-  <th>Employees</th>
-  <th>Point</th>
-  <th>Phone Number</th>
+
+<h4>Edit Employees</h4>
+<table>
+  <tr id="header">
+    <th>Employees</th>
+    <th>Point</th>
+    <th>Phone Number</th>
+  </tr>
+
 {% for instance in list %}
   <tr>
     <td><a href = '{{instance.get_absolute_url}}'>{{ instance.name }} </a></td>
-    <td>{{instance.point}}</td>
-    <td>{{instance.phone}}</td>
+    <td>{{ instance.point }}</td>
+    <td>{{ instance.phone }}</td>
   </tr>
 {% endfor %}
 </table>

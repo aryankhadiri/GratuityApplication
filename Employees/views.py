@@ -10,7 +10,8 @@ from django.template import RequestContext
 
 # Create your views here.
 def home_view(request):
-    title = 'Dashboard | Employee'
+    title = 'Employee / New Form'
+    page = "New Form"
     js_dict = sendEmployeeDataAsJSON()
     form = formset_factory(TipForm)
     
@@ -30,7 +31,7 @@ def home_view(request):
         else:
             messages.error(request, form1.errors)
             return render(request, 'employee_home.html', {'form':form1, 'new_form':new_form,
-            'js_dict':js_dict})
+            'js_dict':js_dict, 'page': page })
         
         if new_form.is_valid():
             new_instance2 = new_form.save(commit = False)
@@ -40,7 +41,7 @@ def home_view(request):
         else:
             messages.error(request, new_form.errors)
             return render(request, 'employee_home.html',{'form':form1, 'new_form':new_form,
-            'js_dict':js_dict})
+            'js_dict':js_dict, 'page': page})
             
             
         
@@ -50,6 +51,7 @@ def home_view(request):
     print(form)
     context = {
         'title': title,
+        'page': page,
         'new_form':new_form,
         'js_dict':js_dict,
         'form':form
@@ -75,6 +77,7 @@ def home_view(request):
         e = Tip(date = date, tim_amount = tip_amount, time_frame = time_frame, paid_later = paid_later
         ,point = point, employee = employee)
         e.save()"""
+
 def sendEmployeeDataAsJSON():
     query = Employee.objects.all()
     dict = {}

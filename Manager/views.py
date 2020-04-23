@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 def home_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
-    title = 'Dashboard | Home'
+    title = 'Manager / Home'
     page = 'Home'
     if request.method == 'POST':
         start_date = request.POST['start_date_input']
@@ -37,8 +37,7 @@ def home_view(request):
 def add_employee_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
-    title = 'Adding Employee'
-    title = 'Dashboard | Add Employee'
+    title = 'Manager / Add Employee'
     page = 'Add Employee'
     if request.method == 'POST':
         
@@ -78,7 +77,7 @@ def add_employee_view(request):
 def list_employee_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
-    title = 'Dashboard | Edit Employee'
+    title = 'Manager / Edit Employee'
     page = "Edit Employee"
     queryset = Employee.objects.all()
     context = {

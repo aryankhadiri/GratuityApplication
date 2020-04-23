@@ -9,5 +9,7 @@ $(function() {
             break;
         case "Edit Employee": $("#nav ul li#list_item3 a").addClass("active");
             break;
+        case "New Form": $("#nav ul li#list_item1 a").addClass("active");
+            break;
     }
 });
