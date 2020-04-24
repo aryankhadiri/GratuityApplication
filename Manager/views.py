@@ -118,23 +118,38 @@ def weekly_report_view(request):
 
     tips = Tip.objects.filter(date__lte = last_date_of_week).filter(date__gte=first_date_of_week).order_by('date')
     employees = Employee.objects.all().order_by('name')
+    
     all_info = {}
+    for employee in employees:
+        all_info[employee.name] = {}
+        for day in days_dates:
+            all_info[employee.name][day]=['','']
+    for tip in tips:
+        if tip.time_frame == 'AM':
+            all_info[tip.employee.name][tip.date][0] = tip.paid_later
+        else:
+            all_info[tip.employee.name][tip.date][1] = tip.paid_later
+    print(all_info)
+
+
+    """all_info = {}
     for employee in employees:
         all_info[employee.name] = []
         for tip in tips:
             if tip.employee == employee:
                 all_info[employee.name].append({tip.date:[{tip.time_frame:tip.paid_later}]})
+    for key in all_info:
+        for i in range(0, 7):"""
+            
 
-
-    
-    print(all_info)
                 
     
     context = {
         'title':title,
         'tips':tips,
         'employees':employees,
-        'days_dates':days_dates
+        'days_dates':days_dates,
+        'all_info':all_info
     }
     for tip in tips:
         print(tip.employee)
