@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from datetime import timedelta
 
+
 # Create your views here.
 #@login_required
 
@@ -105,11 +106,18 @@ def update_employee_view(request, id=id):
 def weekly_report_view(request):
     title = "Weekly Reports"
 
+    if request.method == 'POST':
+        print(request.POST)
+        today_date_str = request.POST['date_input']
+        today_date = datetime.strptime(today_date_str, '%Y-%m-%d').date()
 
+        today_day = today_date.weekday()
+    else:
+        today_day = datetime.today().weekday()
+        today_date = datetime.today().date()
 
-
-    today_day = datetime.today().weekday()
-    today_date = datetime.today().date()
+    #print(today_date)
+    
     first_date_of_week = today_date - timedelta(today_day)
     last_date_of_week = first_date_of_week + timedelta(7)
     days_dates=[]
@@ -120,16 +128,23 @@ def weekly_report_view(request):
     employees = Employee.objects.all().order_by('name')
     
     all_info = {}
+    total_info = {}
     for employee in employees:
         all_info[employee.name] = {}
+        total_info[employee.name] = 0
         for day in days_dates:
             all_info[employee.name][day]=['','']
     for tip in tips:
         if tip.time_frame == 'AM':
             all_info[tip.employee.name][tip.date][0] = tip.paid_later
+            total_info[tip.employee.name] += tip.paid_later
         else:
             all_info[tip.employee.name][tip.date][1] = tip.paid_later
-    print(all_info)
+            total_info[tip.employee.name] += tip.paid_later
+    print(total_info)
+    for tip in tips:
+        print(tip.employee.name , "  ", tip.date , tip.time_frame, tip.paid_later, tip.paid_today)
+#    print(all_info)
 
 
     """all_info = {}
@@ -149,8 +164,8 @@ def weekly_report_view(request):
         'tips':tips,
         'employees':employees,
         'days_dates':days_dates,
-        'all_info':all_info
+        'all_info':all_info,
+        'total_info': total_info
     }
-    for tip in tips:
-        print(tip.employee)
+    
     return render(request, 'weekly_reports.html', context)

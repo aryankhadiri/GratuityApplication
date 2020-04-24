@@ -1,0 +1,19 @@
+th, td{
+    text-align: center;
+    
+}
+th{
+    border:solid 2px;
+}
+td{
+    border:solid 2px rgba(128, 128, 128, 0.37);
+    
+}
+tr:nth-child(even){
+    background-color: rgba(41, 12, 0, 0.068);
+
+}
+.total_data{
+    color:rgb(1, 146, 146);
+    font-weight: bolder;
+}
