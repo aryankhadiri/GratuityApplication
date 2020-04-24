@@ -1,7 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Varela);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 body {
   background-color: #151515;
-  font-family: "Varela";
+  font-family: "Lato";
   color: #FFFFFFFF;
 }
 
@@ -84,25 +84,21 @@ body {
 }
 
 #login-wrapper .login-form input[type="email"]::-webkit-input-placeholder, #login-wrapper .login-form input[type="password"]::-webkit-input-placeholder {
-  font-style: italic;
   font-size: 24px;
   color: rgba(255, 255, 255, 0.4);
 }
 
 #login-wrapper .login-form input[type="email"]:-ms-input-placeholder, #login-wrapper .login-form input[type="password"]:-ms-input-placeholder {
-  font-style: italic;
   font-size: 24px;
   color: rgba(255, 255, 255, 0.4);
 }
 
 #login-wrapper .login-form input[type="email"]::-ms-input-placeholder, #login-wrapper .login-form input[type="password"]::-ms-input-placeholder {
-  font-style: italic;
   font-size: 24px;
   color: rgba(255, 255, 255, 0.4);
 }
 
 #login-wrapper .login-form input[type="email"]::placeholder, #login-wrapper .login-form input[type="password"]::placeholder {
-  font-style: italic;
   font-size: 24px;
   color: rgba(255, 255, 255, 0.4);
 }
@@ -133,8 +129,7 @@ body {
   width: 17rem;
   height: 35px;
   font-size: 22px;
-  font-weight: 200;
-  font-style: italic;
+  font-weight: 100;
   cursor: pointer;
 }
 

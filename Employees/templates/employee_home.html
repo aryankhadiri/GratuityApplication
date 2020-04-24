@@ -21,38 +21,39 @@
         <!-- first section-->
         <div class="row" id="top-section">
             <div class="col s3 m3 l3 asd">
-                <label for="cc_tip" id="ccLabel">Credit Card Tip:</label>
+                <label for="cc_tip" class="requires-input" id="ccLabel">Credit Card Tip:</label>
                 {{new_form.cc_tip}}
-                <label for="sc_label" id="scLabel">Service Charge:</label>
+                <label for="sc_label" class="requires-input" id="scLabel">Service Charge:</label>
                 {{new_form.service_charge}}
-                <label for="Total_Tip_By_Cards" class="readonly" id="ttbcLabel">Total Tip By CC:</label>
+
+                <label for="Total_Tip_By_Cards" class="readonly bottom" id="ttbcLabel">Total Tip By CC:</label>
                 <input readonly type="number" id="Total_Tip_By_Cards">
             </div>
 
             <div class="col s3 m3 l3 asd">
-                <label class="labels" id="csLabel">Cash Sales:</label>
+                <label class="requires-input" id="csLabel">Cash Sales:</label>
                 {{new_form.cash_sales}}
-                <label class= "labels" id="ctLabel">Cash Tip:</label>
+                <label class="requires-input" id="ctLabel">Cash Tip:</label>
                 {{new_form.cash_tip}}
-                <label class= "readonly labels" id="tcLabel">Total Cash:</label>
+                <label class= "readonly bottom" id="tcLabel">Total Cash:</label>
                 <input readonly type="number" id="Total_Cash">
             </div>
 
             <div class="col s3 m3 l3 asd">
-                <label class="readonly labels" id="ccLabel2">CC Tip(s):</label>
+                <label class="readonly" id="ccLabel2">CC Tip(s):</label>
                 <input readonly type="number" id="Total_Tip_By_Cards_2">
-                <label class= "readonly labels" id = "ctLabel2">Cash Tip:</label>
+                <label class= "readonly" id = "ctLabel2">Cash Tip:</label>
                 <input readonly type="number" id="cash_tip_2" onblur="total_tip()">
-                <label class= "readonly labels" id = "ttLabel">Total Tip:</label>
+                <label class= "readonly bottom" id = "ttLabel">Total Tip:</label>
                 <input readonly type="number" id="Total_Tip">
             </div>
 
             <div class="col s3 m3 l3 asd">
-                <label class="readonly labels" id="ttLabel2">Total Tip:</label>
+                <label class="readonly" id="ttLabel2">Total Tip:</label>
                 <input readonly type="number" id="Total_Tip_2">
-                <label class= "labels" id="pstLabel">Pre-Shift Tip:</label>
+                <label class="requires-input" id="pstLabel">Pre-Shift Tip:</label>
                 {{new_form.pre_shift_tip}}
-                <label class= "readonly labels" id="stLabel">Shift Tip:</label>
+                <label class= "readonly bottom" id="stLabel">Shift Tip:</label>
                 <input readonly type="number" id="shift_tip">
             </div>
         </div>
@@ -67,10 +68,7 @@
             </div>
 
             <div class="col s5ths" id="indexes">
-                <!-- "performance index" is too long, so when the screen size is reduced to "small," the text will not wrap
-                    and the entire text will be visible by scrolling on it. this is to prevent the text wrap from throwing off the
-                    alignment of the fields.-->
-                <h6>Performance Index:</h6>
+                <h6 class="readonly">Performance Index:</h6>
                 {% for form in form %}
                     {{ form.point }}
                 {%endfor%}
@@ -110,17 +108,17 @@
         <!-- fourth section -->
         <div class="row" id="bottom-section">
                 <div class="col s2 m2 l2">
-                    <label class="labels" id="dateLabel">Date:</label>
+                    <label class="" id="dateLabel">Date:</label>
                     {{new_form.date}}
                 </div>
 
                 <div class="col s2 m2 l2">
-                    <label class="labels" id="tfLabel">Time Frame:</label>
+                    <label class="" id="tfLabel">Time Frame:</label>
                     {{new_form.time_frame}}
                 </div>
 
                 <div class="col s2 m2 l2">
-                    <label class="labels" id="cbLabel">Closed By:</label>
+                    <label class="" id="cbLabel">Closed By:</label>
                     {{new_form.submitted_employee}}
                 </div>
 
