@@ -9,6 +9,13 @@ body {
     transition: border-bottom 450ms ease;
 }
 
+.forms input[type="number"] {
+    margin-top: 17.5px;
+    font-size: 18.5px;
+    border-bottom: 1px solid rgba(158, 158, 158, 0.5);
+    transition: border-bottom 450ms ease;
+}
+
 .forms #nameField:focus {
     border-bottom: 1px solid #000000 !important;
     box-shadow: 0 0.5px 0 0 #000000;
@@ -99,6 +106,16 @@ body {
 
 .form-buttons button.cancel:hover {
     background-color: rgba(54, 198, 218, 0.2);
+    transition: background-color 450ms ease;
+}
+
+.form-buttons button.delete {
+    background-color: none;
+    transition: background-color 450ms ease;
+}
+
+.form-buttons button.delete:hover {
+    background-color: rgba(255, 64, 64, 0.2);
     transition: background-color 450ms ease;
 }
 

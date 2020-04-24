@@ -27,5 +27,9 @@ urlpatterns = [
     path('addemployee',add_employee_view, name='add_employee'),
     path('list/',list_employee_view, name='list_employee'),
     path('list/<int:id>/', update_employee_view, name = 'update_employee'),
+<<<<<<< HEAD
     path('weeklyreports', weekly_report_view, name = "weekly_reports")  
+=======
+    path('logout', logout_view, name = 'logout')  
+>>>>>>> master
 ]

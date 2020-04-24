@@ -7,6 +7,8 @@ from .form import EmployeeForm
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from datetime import timedelta
+from django.contrib.auth import logout
+from datetime import datetime, timedelta
 
 
 # Create your views here.
@@ -15,8 +17,8 @@ from datetime import timedelta
 def home_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
-    title = 'Dashboard | Home'
-
+    title = 'Manager / Home'
+    page = 'Home'
     if request.method == 'POST':
         start_date = request.POST['start_date_input']
         end_date = request.POST['end_date_input']
@@ -29,6 +31,7 @@ def home_view(request):
     #fetch all the forms submitted between week ago and today. 
     context = {
         'title': title,
+        "page": page,
         'allForms':allForms
     }
     return render(request, 'home.html', context)
@@ -37,7 +40,8 @@ def home_view(request):
 def add_employee_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
-    title = 'Adding Employee'
+    title = 'Manager / Add Employee'
+    page = 'Add Employee'
     if request.method == 'POST':
         
         form = EmployeeForm(request.POST)
@@ -60,23 +64,29 @@ def add_employee_view(request):
 
         context = {
             'title': title,
+            'page': page,
             'form': form
         }
         return render(request, 'employee.html', context)
     
     form = EmployeeForm()
     context = {
-        'form':form,
-        'title':title
+        'title': title,
+        'page': page,
+        'form': form
     }
     return render(request, 'employee.html', context)
     
 def list_employee_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
+    title = 'Manager / Edit Employee'
+    page = "Edit Employee"
     queryset = Employee.objects.all()
     context = {
-        "list":queryset
+        "list": queryset,
+        "title": title,
+        "page": page
     }
     return render (request,'list.html', context)
 
@@ -168,4 +178,7 @@ def weekly_report_view(request):
         'total_info': total_info
     }
     
-    return render(request, 'weekly_reports.html', context)
+    return render(request, 'weekly_reports.html', context)def logout_view(request):
+    if request.method=='POST':
+        logout(request)
+        return redirect ('login')

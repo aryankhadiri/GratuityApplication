@@ -6,14 +6,15 @@ from django.forms import modelformset_factory, formset_factory
 import json
 from django.contrib import messages
 from django.template import RequestContext
+from django.contrib.auth import logout
 
 
 # Create your views here.
 def home_view(request):
-    
+    title = 'Employee / New Form'
+    page = "New Form"
     js_dict = sendEmployeeDataAsJSON()
     form = formset_factory(TipForm)
-    
     if request.method == 'POST':
         form1 = form(request.POST)
         new_form= newForm(request.POST)
@@ -30,7 +31,7 @@ def home_view(request):
         else:
             messages.error(request, form1.errors)
             return render(request, 'employee_home.html', {'form':form1, 'new_form':new_form,
-            'js_dict':js_dict})
+            'js_dict':js_dict, 'page': page })
         
         if new_form.is_valid():
             new_instance2 = new_form.save(commit = False)
@@ -41,7 +42,7 @@ def home_view(request):
         else:
             messages.error(request, new_form.errors)
             return render(request, 'employee_home.html',{'form':form1, 'new_form':new_form,
-            'js_dict':js_dict})
+            'js_dict':js_dict, 'page': page})
             
             
         
@@ -50,6 +51,8 @@ def home_view(request):
     #form = tip_form_set(queryset = Tip.objects.none())
     print(form)
     context = {
+        'title': title,
+        'page': page,
         'new_form':new_form,
         'js_dict':js_dict,
         'form':form
@@ -75,6 +78,7 @@ def home_view(request):
         e = Tip(date = date, tim_amount = tip_amount, time_frame = time_frame, paid_later = paid_later
         ,point = point, employee = employee)
         e.save()"""
+
 def sendEmployeeDataAsJSON():
     query = Employee.objects.all()
     dict = {}
@@ -82,3 +86,8 @@ def sendEmployeeDataAsJSON():
         dict[emp.id] = emp.point
     js_dict = json.dumps(dict)
     return js_dict
+
+def logout_employee(request):
+    if request.method=='POST':
+        logout(request)
+        return redirect ('login')

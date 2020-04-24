@@ -4,21 +4,26 @@
 <head>
    {% load static %}
    <link rel = "stylesheet" type = "text/css" href = "{% static 'home.css' %}">
+   <script> 
+      var page = '{{ page }}';
+   </script>
 </head>
 
 <!-- main content-->
 <h4>Recent Forms</h4>
-<div id = "period_selector">
-   <form method = 'POST'>
+<div id="period_selector">
+   <form method="POST">
       {% csrf_token %}
       
-      <label class = "date_label" id = "start_date_label"> Start Date</label>
-      <input class = "dates" type = "date" name = "start_date_input" id = "start_date_input" required>
+      <label class="date_label" id="start_date_label"> Start Date</label>
+      <input class="dates" type="date" name="start_date_input" id="start_date_input" required>
       
-      <label class = "date_label" for = "end_date_input" id = "end_date_label"> End Date</label>
-      <input class = "dates" type = "date" name = "end_date_input" id = "end_date_input" required>
-      
-      <input type = "submit" value = "Search">
+      <label class="date_label" for="end_date_input" id="end_date_label"> End Date</label>
+      <input class="dates" type="date" name="end_date_input" id="end_date_input" required>
+
+      <div class="center-align">
+         <input type="submit" value="Search">
+      </div>
    </form>
 </div>
 <div class="center-align" id="recent-forms">
@@ -30,12 +35,12 @@
          <th>Time Frame</th>
          <th>Who Submitted</th>
       </tr>
-      <!-- table cells; placeholder text-->
+      <!-- table cells-->
 {% for form in allForms %}
       <tr>
-         <td>{{form.date}}</td>
-         <td>{{form.time_frame}}</td>
-         <td>{{form.submitted_employee}}</td>
+         <td>{{ form.date }}</td>
+         <td>{{ form.time_frame }}</td>
+         <td>{{ form.submitted_employee }}</td>
       </tr>
 {% endfor %}
       
