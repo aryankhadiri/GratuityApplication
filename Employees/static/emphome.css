@@ -12,10 +12,6 @@ h6 {
     font-size: 14px;
 }
 
-h6.readonly {
-    color: #9e9e9e;
-}
-
 label {
     font-size: 14px;
     color: #9e9e9e;
@@ -64,11 +60,6 @@ input:read-only:focus {
 
 input:read-only:hover {
     cursor: default;
-}
-
-input.performance_index {
-    border-bottom: 1px solid #9e9e9e !important;
-    box-shadow: none !important;
 }
 
 select {
