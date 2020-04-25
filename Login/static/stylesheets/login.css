@@ -59,6 +59,10 @@ body {
   outline: none;
 }
 
+#login-wrapper .login-form input[type="email"]:focus::placeholder, #login-wrapper .login-form input[type="password"]:focus::placeholder {
+  color: white;
+}
+
 #login-wrapper .login-form input[type="email"]:hover::-webkit-input-placeholder, #login-wrapper .login-form input[type="password"]:hover::-webkit-input-placeholder {
   color: white;
   -webkit-transition: color 750ms ease;

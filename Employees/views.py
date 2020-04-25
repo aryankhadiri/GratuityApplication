@@ -104,8 +104,8 @@ def logout_employee(request):
         return redirect ('login')
 
 def weekly_report_view(request):
-    title = "Weekly Reports BY Employee"
-
+    title = "Employee / Weekly Reports"
+    page = "Weekly Reports, Employee"
     if request.method == 'POST':
         print(request.POST)
         today_date_str = request.POST['date_input']
@@ -161,6 +161,7 @@ def weekly_report_view(request):
     
     context = {
         'title':title,
+        'page': page,
         'tips':tips,
         'employees':employees,
         'days_dates':days_dates,
