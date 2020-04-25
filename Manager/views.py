@@ -178,7 +178,9 @@ def weekly_report_view(request):
         'total_info': total_info
     }
     
-    return render(request, 'weekly_reports.html', context)def logout_view(request):
+    return render(request, 'weekly_reports.html', context)
+    
+def logout_view(request):
     if request.method=='POST':
         logout(request)
         return redirect ('login')
