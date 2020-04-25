@@ -18,9 +18,18 @@ def home_view(request):
     js_dict = sendEmployeeDataAsJSON()
     form = formset_factory(TipForm)
     if request.method == 'POST':
+        #checks to make sure we are not submitting any form for a existing date and time_frame
+        date = request.POST['date']
+        time_frame = request.POST['time_frame']
+        if Form.objects.filter(date = date).filter(time_frame = time_frame).exists():
+            error_message = "There is already a form for the date: " + date + " and timeframe: " + time_frame
+            messages.error(request, error_message)
+            return redirect("employee_home")
+
         form1 = form(request.POST)
         new_form= newForm(request.POST)
-        if form1.is_valid() and form1.has_changed():   
+        if form1.is_valid() and form1.has_changed():
+           
             for f in form1:
                 print(f)
                 new_instance = f.save(commit=False)
@@ -40,7 +49,7 @@ def home_view(request):
             new_instance2.time = datetime.now().time()
             new_instance2.save()
             messages.success(request, "The form has been successfully saved!")
-            return redirect('home')
+            return redirect('employee_home')
         else:
             messages.error(request, new_form.errors)
             return render(request, 'employee_home.html',{'form':form1, 'new_form':new_form,
@@ -132,9 +141,9 @@ def weekly_report_view(request):
         else:
             all_info[tip.employee.name][tip.date][1] = tip.paid_later
             total_info[tip.employee.name] += tip.paid_later
-    print(total_info)
-    for tip in tips:
-        print(tip.employee.name , "  ", tip.date , tip.time_frame, tip.paid_later, tip.paid_today)
+    #print(total_info)
+    #for tip in tips:
+     #   print(tip.employee.name , "  ", tip.date , tip.time_frame, tip.paid_later, tip.paid_today)
 #    print(all_info)
 
 
