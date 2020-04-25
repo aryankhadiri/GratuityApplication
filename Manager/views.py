@@ -5,8 +5,6 @@ from Employees.models import Tip, Form
 from django.contrib import messages
 from .form import EmployeeForm
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
-from datetime import timedelta
 from django.contrib.auth import logout
 from datetime import datetime, timedelta
 

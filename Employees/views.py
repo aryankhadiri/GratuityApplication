@@ -7,6 +7,8 @@ import json
 from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.auth import logout
+from datetime import datetime, timedelta
+
 
 
 # Create your views here.
@@ -91,3 +93,70 @@ def logout_employee(request):
     if request.method=='POST':
         logout(request)
         return redirect ('login')
+
+def weekly_report_view(request):
+    title = "Weekly Reports BY Employee"
+
+    if request.method == 'POST':
+        print(request.POST)
+        today_date_str = request.POST['date_input']
+        today_date = datetime.strptime(today_date_str, '%Y-%m-%d').date()
+
+        today_day = today_date.weekday()
+    else:
+        today_day = datetime.today().weekday()
+        today_date = datetime.today().date()
+
+    #print(today_date)
+    
+    first_date_of_week = today_date - timedelta(today_day)
+    last_date_of_week = first_date_of_week + timedelta(7)
+    days_dates=[]
+    for i in range(0,7):
+        days_dates.append(first_date_of_week+timedelta(i))
+
+    tips = Tip.objects.filter(date__lte = last_date_of_week).filter(date__gte=first_date_of_week).order_by('date')
+    employees = Employee.objects.all().order_by('name')
+    
+    all_info = {}
+    total_info = {}
+    for employee in employees:
+        all_info[employee.name] = {}
+        total_info[employee.name] = 0
+        for day in days_dates:
+            all_info[employee.name][day]=['','']
+    for tip in tips:
+        if tip.time_frame == 'AM':
+            all_info[tip.employee.name][tip.date][0] = tip.paid_later
+            total_info[tip.employee.name] += tip.paid_later
+        else:
+            all_info[tip.employee.name][tip.date][1] = tip.paid_later
+            total_info[tip.employee.name] += tip.paid_later
+    print(total_info)
+    for tip in tips:
+        print(tip.employee.name , "  ", tip.date , tip.time_frame, tip.paid_later, tip.paid_today)
+#    print(all_info)
+
+
+    """all_info = {}
+    for employee in employees:
+        all_info[employee.name] = []
+        for tip in tips:
+            if tip.employee == employee:
+                all_info[employee.name].append({tip.date:[{tip.time_frame:tip.paid_later}]})
+    for key in all_info:
+        for i in range(0, 7):"""
+            
+
+                
+    
+    context = {
+        'title':title,
+        'tips':tips,
+        'employees':employees,
+        'days_dates':days_dates,
+        'all_info':all_info,
+        'total_info': total_info
+    }
+    
+    return render(request, 'weekly_reports_employee.html', context)
