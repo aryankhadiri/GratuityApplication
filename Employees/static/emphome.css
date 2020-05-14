@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 
 #nav ul {
-    transform: translateY(30vh);
+    transform: translateY(20vh);
 }
 
 #top-section, #second-section, #third-section, #bottom-section {
@@ -10,10 +10,6 @@
 
 h6 {
     font-size: 14px;
-}
-
-h6.readonly {
-    color: #9e9e9e;
 }
 
 label {
@@ -66,11 +62,6 @@ input:read-only:hover {
     cursor: default;
 }
 
-input.performance_index {
-    border-bottom: 1px solid #9e9e9e !important;
-    box-shadow: none !important;
-}
-
 select {
     display: block !important;
     border: 1px solid #000000;
@@ -107,6 +98,7 @@ select:focus {
 
 #bottom-section .date {
     border-bottom: 1px solid #9e9e9e;
+    font-size: 14px;
 }
 
 #add-button:hover {
@@ -150,7 +142,18 @@ select:focus {
     }
 
 }
-
+.flash {
+    animation: flash 3s;
+  }
+  
+  @keyframes flash {
+    50% {
+      background: red;
+    }
+    100% {
+      background: transparent;
+    }
+  }
 /*
 #outer-wrapper{
     display: grid;

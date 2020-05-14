@@ -161,11 +161,15 @@ function validate(){
 
     for (id in invalid_ids){
         var x = document.getElementById(invalid_ids[id]);
-        x.style = "background-color:red;"
+        x.classList.add("Flash")
+        x.addEventListener('animationend', function(){
+            this.classList.remove("Flash")
+        })
+        }
+        //x.style = "background-color:blue; animation-duration: 1s;"
+        return false;
     }
-    return false;
-
-    }
+    
     else{
     return true
 }

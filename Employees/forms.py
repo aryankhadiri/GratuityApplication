@@ -3,6 +3,9 @@ from .models import Form
 from .models import Tip
 from datetime import datetime
 from .models import Employee
+class customDateInput(forms.DateInput):
+    input_type = 'date'
+
 class TipForm(forms.ModelForm):
     
     employee = forms.ModelChoiceField(queryset = Employee.objects.all(), widget = forms.Select(attrs={
@@ -47,10 +50,9 @@ class TipForm(forms.ModelForm):
         }
 class newForm(forms.ModelForm):
     
-    date = forms.DateField(widget=forms.DateInput(attrs = {
+    date = forms.DateField(widget=customDateInput(attrs = {
         'class': 'Date',
         'id': 'NFdate',
-        'onblur':"copyDate()",
         'value':datetime.now().date()
 
         

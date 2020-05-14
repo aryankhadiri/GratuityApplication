@@ -11,5 +11,9 @@ $(function() {
             break;
         case "New Form": $("#nav ul li#list_item1 a").addClass("active");
             break;
+        case "Weekly Reports, Employee": $("nav ul li#list_item3 a").addClass("active");
+            break;
+        case "Weekly Reports, Manager": $("nav ul li#list_item4 a").addClass("active");
+            break;
     }
 });

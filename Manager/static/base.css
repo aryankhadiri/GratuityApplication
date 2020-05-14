@@ -126,6 +126,7 @@ nav {
 #main-content {
     height: 85vh;
     overflow-y: auto;
+    overflow-x: auto;
 }
 
 @media only screen and (max-width: 992px) {
