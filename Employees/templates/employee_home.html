@@ -12,7 +12,7 @@
 
 <!-- main content-->
 <h4>New Form</h4><br>
-<form action="" method="POST" id="form" >
+<form action="" method="POST" id="form" onsubmit="return validate()">
     {% include 'alert.html' %}
 
     {% csrf_token %}
