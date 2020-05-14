@@ -28,7 +28,7 @@ def home_view(request):
 
         form1 = form(request.POST)
         new_form= newForm(request.POST)
-        if form1.is_valid() and form1.has_changed():
+        if form1.is_valid() and form1.has_changed() and new_form.is_valid():
            
             for f in form1:
                 print(f)
@@ -40,7 +40,10 @@ def home_view(request):
             messages.success(request, "The Tips have been successfully saved!")
 
         else:
-            messages.error(request, form1.errors)
+            for error in form1.errors:
+                messages.error(request, error)
+            for error2 in new_form.errors:
+                messages.error(request, error2)
             return render(request, 'employee_home.html', {'form':form1, 'new_form':new_form,
             'js_dict':js_dict, 'page': page })
         
@@ -104,8 +107,8 @@ def logout_employee(request):
         return redirect ('login')
 
 def weekly_report_view(request):
-    title = "Employee / Weekly Reports"
-    page = "Weekly Reports, Employee"
+    title = "Weekly Reports BY Employee"
+
     if request.method == 'POST':
         print(request.POST)
         today_date_str = request.POST['date_input']
@@ -161,7 +164,6 @@ def weekly_report_view(request):
     
     context = {
         'title':title,
-        'page': page,
         'tips':tips,
         'employees':employees,
         'days_dates':days_dates,

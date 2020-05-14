@@ -142,7 +142,18 @@ select:focus {
     }
 
 }
-
+.flash {
+    animation: flash 3s;
+  }
+  
+  @keyframes flash {
+    50% {
+      background: red;
+    }
+    100% {
+      background: transparent;
+    }
+  }
 /*
 #outer-wrapper{
     display: grid;
