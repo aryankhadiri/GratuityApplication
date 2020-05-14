@@ -36,9 +36,13 @@ def home_view(request):
                 new_instance.date = request.POST.get('date')
                 new_instance.time_frame = request.POST.get('time_frame')
                 new_instance.save()
+                messages.success(request, "The Tips have been successfully saved!")
+                new_instance2 = new_form.save(commit = False)
+                new_instance2.time = datetime.now().time()
+                new_instance2.save()
+                messages.success(request, "The form has been successfully saved!")
+            return redirect('employee_home')
                 
-            messages.success(request, "The Tips have been successfully saved!")
-
         else:
             for error in form1.errors:
                 messages.error(request, error)
@@ -47,7 +51,7 @@ def home_view(request):
             return render(request, 'employee_home.html', {'form':form1, 'new_form':new_form,
             'js_dict':js_dict, 'page': page })
         
-        if new_form.is_valid():
+        """if new_form.is_valid():
             new_instance2 = new_form.save(commit = False)
             new_instance2.time = datetime.now().time()
             new_instance2.save()
@@ -56,7 +60,7 @@ def home_view(request):
         else:
             messages.error(request, new_form.errors)
             return render(request, 'employee_home.html',{'form':form1, 'new_form':new_form,
-            'js_dict':js_dict, 'page': page})
+            'js_dict':js_dict, 'page': page})"""
             
             
         
