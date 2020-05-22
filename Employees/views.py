@@ -8,10 +8,12 @@ from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.auth import logout
 from datetime import datetime, timedelta
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
+@login_required    
 def home_view(request):
     title = 'Employee / New Form'
     page = "New Form"
@@ -36,11 +38,13 @@ def home_view(request):
                 new_instance.date = request.POST.get('date')
                 new_instance.time_frame = request.POST.get('time_frame')
                 new_instance.save()
-                messages.success(request, "The Tips have been successfully saved!")
+                
                 new_instance2 = new_form.save(commit = False)
                 new_instance2.time = datetime.now().time()
                 new_instance2.save()
-                messages.success(request, "The form has been successfully saved!")
+            messages.success(request, "The Tips have been successfully saved!")
+            messages.success(request, "The form has been successfully saved!")
+
             return redirect('employee_home')
                 
         else:
@@ -105,11 +109,13 @@ def sendEmployeeDataAsJSON():
     js_dict = json.dumps(dict)
     return js_dict
 
+@login_required    
 def logout_employee(request):
     if request.method=='POST':
         logout(request)
         return redirect ('login')
 
+@login_required    
 def weekly_report_view(request):
     title = "Weekly Reports BY Employee"
 

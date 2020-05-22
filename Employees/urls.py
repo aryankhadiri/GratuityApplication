@@ -10,5 +10,5 @@ urlpatterns = [
     path('', home_view, name = 'employee_home'),
     path('logout', logout_employee,name = 'logoutEmployee'),  
     path('weeklyreports', weekly_report_view, name = "weekly_reports"),
-
+   
 ]

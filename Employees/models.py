@@ -1,5 +1,6 @@
 from django.db import models
 from Manager.models import Employee
+from django.urls import reverse
 # Create your models here.
 class Tip(models.Model):
     date = models.DateField()
@@ -9,6 +10,8 @@ class Tip(models.Model):
     paid_later = models.FloatField()
     point = models.FloatField()
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+    
 
 class Form(models.Model):
     date = models.DateField()
@@ -20,3 +23,6 @@ class Form(models.Model):
     cash_sales = models.FloatField()
     cash_tip = models.FloatField()
     pre_shift_tip = models.FloatField()
+
+    def get_absolute_url(self):
+        return reverse('update_form', kwargs={'id':self.id})

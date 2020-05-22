@@ -22,10 +22,11 @@ def login_view(request):
         # redirect the user (based on their management status) to their appropriate homepage
         if request.user.manager == True:
             return redirect('/manager/')
-        else:
+        elif request.user.manager == False:
             #TODO 
             """User Homepage (no manager)"""
             return redirect('/employee/')
+        
             
     if request.method == 'POST':
         print(request.POST)
@@ -33,7 +34,7 @@ def login_view(request):
             user_email = request.POST.get('email')
             user_password = request.POST.get('password')
             user = authenticate(request, email = user_email, password = user_password)
-
+            print(user)
             if user is not None:
                 login(request, user)
                 if request.user.manager == True:

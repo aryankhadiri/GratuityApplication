@@ -7,11 +7,12 @@ from .form import EmployeeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime, timedelta
-
+from Employees.forms import *
+from django.forms import modelformset_factory, formset_factory
+from Employees.views import sendEmployeeDataAsJSON
 
 # Create your views here.
-#@login_required
-
+@login_required
 def home_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
@@ -33,8 +34,9 @@ def home_view(request):
         'allForms':allForms
     }
     return render(request, 'home.html', context)
-#@login_required
+
 #login_required is functional, just commented out for development process
+@login_required
 def add_employee_view(request):
     if request.user.manager == False:
         return redirect('/employee/')
@@ -87,7 +89,7 @@ def list_employee_view(request):
         "page": page
     }
     return render (request,'list.html', context)
-
+@login_required
 def update_employee_view(request, id=id):
     if request.user.manager == False:
         return redirect('/employee/')
@@ -110,7 +112,27 @@ def update_employee_view(request, id=id):
         'title':title
     }
     return render(request,'employee.html', context)
-    
+@login_required
+def update_form_view(request, id = id):
+    if request.user.manager == False:
+        return redirect('/employee/')
+    js_dict = sendEmployeeDataAsJSON()
+    title = "Editing Form"
+    form = get_object_or_404(Form, id = id)
+    tipFormSet = modelformset_factory(Tip, exclude=(), form = TipForm)
+    editForm = newForm(request.POST or None, instance = form)
+    queryset = Tip.objects.filter(date = form.date).filter(time_frame = form.time_frame)
+    tips = tipFormSet(queryset = queryset)
+    context = {
+        'form':tips,
+        'new_form': editForm,
+        'title': title,
+        'js_dict':js_dict
+    }
+
+    return render(request, 'employee_home.html', context)
+
+@login_required
 def weekly_report_view(request):
     title = "Manager / Weekly Reports"
     page = "Weekly Reports, Manager"
@@ -178,7 +200,7 @@ def weekly_report_view(request):
     }
     
     return render(request, 'weekly_reports.html', context)
-    
+@login_required    
 def logout_view(request):
     if request.method=='POST':
         logout(request)

@@ -10,16 +10,14 @@ class TipForm(forms.ModelForm):
     
     employee = forms.ModelChoiceField(queryset = Employee.objects.all(), widget = forms.Select(attrs={
         'class': 'name',
-        'onchange':"getIndexOfEmployee(this);checkToDelete(this)"
+        'onchange':"getIndexOfEmployee(this);checkToDelete(this); calculateTotalIndex()"
     }))
     time_frame = forms.Select(attrs = {
         'class': 'time_frame',
         'id': 'time_frame',
         'required': False
     })   
-    point = forms.FloatField(widget = forms.NumberInput(attrs = {
-        'class': 'point'
-    }))
+    
     tip_amount = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'tip',
         'oninput':'calculateTipLeft()',
@@ -31,7 +29,8 @@ class TipForm(forms.ModelForm):
         'value':0
     }))
     point = forms.FloatField(widget = forms.NumberInput(attrs={
-        'class': 'performance_index'
+        'class': 'performance_index',
+        'oninput':'calculateTotalIndex()'
     }))
     
     paid_later = forms.FloatField(widget = forms.NumberInput(attrs={

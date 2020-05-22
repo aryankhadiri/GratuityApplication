@@ -100,7 +100,8 @@ function paidLaterCalculator(doc){
     var paid_later = total_tip-paid_today;
     document.getElementById("paid-laters").children[index].value = paid_later
 }
-function calculateTotalIndex(doc){
+function calculateTotalIndex(){
+    var doc = document.getElementById("total_index");
     var sum = 0;
     var indexes = document.getElementById("indexes");
     for (i = 1; i < indexes.children.length; i++){

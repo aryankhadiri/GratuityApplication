@@ -34,13 +34,13 @@
       <tr id="header">
          <th>Date</th>
          <th>Time Frame</th>
-         <th>Who Submitted</th>
+         <th>Submitted By</th>
       </tr>
       <!-- table cells-->
 {% for form in allForms %}
       <tr>
          <td>{{ form.date }}</td>
-         <td>{{ form.time_frame }}</td>
+         <td><a href = "{{form.get_absolute_url}}">{{ form.time_frame }}</a></td>
          <td>{{ form.submitted_employee }}</td>
       </tr>
 {% endfor %}
