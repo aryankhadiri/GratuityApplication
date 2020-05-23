@@ -119,10 +119,12 @@ def update_form_view(request, id = id):
     js_dict = sendEmployeeDataAsJSON()
     title = "Editing Form"
     form = get_object_or_404(Form, id = id)
-    tipFormSet = modelformset_factory(Tip, exclude=(), form = TipForm)
+    tipFormSet = modelformset_factory(Tip, exclude=(), form = TipForm, extra = 0)
+    print(tipFormSet)
     editForm = newForm(request.POST or None, instance = form)
     queryset = Tip.objects.filter(date = form.date).filter(time_frame = form.time_frame)
     tips = tipFormSet(queryset = queryset)
+    print(tips)
     context = {
         'form':tips,
         'new_form': editForm,
@@ -130,7 +132,7 @@ def update_form_view(request, id = id):
         'js_dict':js_dict
     }
 
-    return render(request, 'employee_home.html', context)
+    return render(request, 'edit_form.html', context)
 
 @login_required
 def weekly_report_view(request):

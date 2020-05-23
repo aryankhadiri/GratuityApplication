@@ -25,7 +25,7 @@ class TipForm(forms.ModelForm):
     }))
     paid_today = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'paid_today',
-        'oninput': "paidLaterCalculator(this);calculateCashLeft()",
+        'oninput': "paidLaterCalculator(this);calculateCashLeft();",
         'value':0
     }))
     point = forms.FloatField(widget = forms.NumberInput(attrs={
@@ -68,31 +68,31 @@ class newForm(forms.ModelForm):
     cc_tip = forms.FloatField(widget = forms.NumberInput(attrs = {
         'class': 'cc_tip',
         'id': 'cc_tip',
-        'oninput':"total_cc_tip()"
+        'oninput':"total_cc_tip();total_tip();shift_tip_func();calculateTipLeft();"
     }))
     service_charge = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'service_charge',
         'id': 'service_charge',
-        'oninput':"total_cc_tip()"
+        'oninput':"total_cc_tip();total_tip();shift_tip_func();calculateTipLeft();"
         
     }))
     cash_sales = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'cash_sales',
         'id': 'cash_sales',
-        'oninput': "total_cash_sales()"
+        'oninput': "total_cash_sales();shift_tip_func();calculateCashLeft()"
 
     }))
     cash_tip = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'cash_tip',
         'id': 'cash_tip',
-        'oninput': "total_cash_sales();total_tip()",
+        'oninput': "total_cash_sales();total_tip();shift_tip_func();calculateTipLeft();calculateCashLeft()",
     
 
     }))
     pre_shift_tip = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'pre_shift_tip',
         'id': 'pre_shift_tip',
-        'oninput':"shift_tip_func()"
+        'oninput':"shift_tip_func();calculateTipLeft();"
     }))
     
     class Meta:
