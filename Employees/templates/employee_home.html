@@ -12,7 +12,7 @@
 
 <!-- main content-->
 <h4>New Form</h4><br>
-<form action="" method="POST" id="form" onsubmit="return validate()">
+<form method="POST" id="form" onsubmit="return validate()">
     {% include 'alert.html' %}
 
     {% csrf_token %}
@@ -101,7 +101,7 @@
         <div class="row" id="third-section">
             <div class="col s12 center-align" id="add-div">
                 <input type="button" id="add-button" onclick="addElement()" value="Add Employee">
-                <input type="button" id="calculate-tips" onclick="calculateTips()" value="Calculate Tips">
+                <input type="button" id="calculate-tips" onclick="calculateTips(); " value="Calculate Tips">
             </div>
         </div>
         

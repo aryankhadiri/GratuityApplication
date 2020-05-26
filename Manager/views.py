@@ -91,6 +91,8 @@ def list_employee_view(request):
     return render (request,'list.html', context)
 @login_required
 def update_employee_view(request, id=id):
+    if request.method == "POST":
+        print(request.POST)
     if request.user.manager == False:
         return redirect('/employee/')
     title = 'Update Employee Information'
@@ -111,20 +113,39 @@ def update_employee_view(request, id=id):
         'form':form,
         'title':title
     }
-    return render(request,'employee.html', context)
+    return render(request,'edit_employee.html', context)
 @login_required
 def update_form_view(request, id = id):
     if request.user.manager == False:
         return redirect('/employee/')
     js_dict = sendEmployeeDataAsJSON()
     title = "Editing Form"
+    
+            
     form = get_object_or_404(Form, id = id)
-    tipFormSet = modelformset_factory(Tip, exclude=(), form = TipForm, extra = 0)
-    print(tipFormSet)
+    tipFormSet = modelformset_factory(Tip, exclude=(), form = TipForm, extra = 0, can_delete=True)
     editForm = newForm(request.POST or None, instance = form)
     queryset = Tip.objects.filter(date = form.date).filter(time_frame = form.time_frame)
     tips = tipFormSet(queryset = queryset)
-    print(tips)
+
+    if request.method == 'POST' and editForm.is_valid():
+        if request.POST.get('cancel_button') == 'Cancel':
+            return redirect ('home')
+        if request.POST.get('delete_button') == 'Delete':
+            Tip.objects.filter(date = form.date).filter(time_frame = form.time_frame).delete()
+            form.delete()
+            return redirect('home')
+    
+
+        date = request.POST['date']
+        time_frame = request.POST['time_frame']
+        if Form.objects.filter(date = date).filter(time_frame = time_frame).exists():
+            existing_form_query = Form.objects.filter(date = date).filter(time_frame = time_frame)
+            if existing_form_query[0].id != id:
+                error_message = "There is already a form for the date: " + date + " and timeframe: " + time_frame
+                messages.error(request, error_message)
+                return redirect("update_form", id = id)
+
     context = {
         'form':tips,
         'new_form': editForm,

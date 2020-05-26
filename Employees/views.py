@@ -20,6 +20,7 @@ def home_view(request):
     js_dict = sendEmployeeDataAsJSON()
     form = formset_factory(TipForm)
     if request.method == 'POST':
+        print(request.POST)
         #checks to make sure we are not submitting any form for a existing date and time_frame
         date = request.POST['date']
         time_frame = request.POST['time_frame']

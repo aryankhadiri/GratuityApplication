@@ -26,7 +26,7 @@ class TipForm(forms.ModelForm):
     paid_today = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'paid_today',
         'oninput': "paidLaterCalculator(this);calculateCashLeft();",
-        'value':0
+        "value": 0
     }))
     point = forms.FloatField(widget = forms.NumberInput(attrs={
         'class': 'performance_index',
@@ -39,14 +39,8 @@ class TipForm(forms.ModelForm):
     }))
     class Meta:
         model = Tip
-        fields = {
-            'employee',
-            'point',
-            'tip_amount',
-            'paid_later',
-            'time_frame',
-            'paid_today'
-        }
+        fields = "__all__"
+        
 class newForm(forms.ModelForm):
     
     date = forms.DateField(widget=customDateInput(attrs = {
