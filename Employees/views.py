@@ -34,7 +34,7 @@ def home_view(request):
         if form1.is_valid() and form1.has_changed() and new_form.is_valid():
            
             for f in form1:
-                print(f)
+               
                 new_instance = f.save(commit=False)
                 new_instance.date = request.POST.get('date')
                 new_instance.time_frame = request.POST.get('time_frame')
@@ -72,7 +72,6 @@ def home_view(request):
     new_form = newForm()
 
     #form = tip_form_set(queryset = Tip.objects.none())
-    print(form)
     context = {
         'title': title,
         'page': page,

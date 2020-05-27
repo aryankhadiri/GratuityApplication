@@ -147,16 +147,25 @@ def update_form_view(request, id = id):
                     return redirect("update_form", id = id)
             
             tipForms = tipFormSet(request.POST)
-            
-            if tipForms.is_valid():
-                print('hello')
+    
+            if tipForms.is_valid() and editForm.is_valid():
+                for tip in tipForms:
+                    new_tip_instance = tip.save(commit = False)
+                    new_tip_instance.date = request.POST['date']
+                    new_tip_instance.time_frame = request.POST['time_frame']
+                    new_tip_instance.save()
+                
+                new_form_instance = editForm.save(commit = False)
+                new_form_instance.time = datetime.now().time()
+                new_form_instance.save()
+                
+                messages.success(request, "The changes have been successfully submitted!")
+                return redirect('home')
             else:
                 for error in tipForms.errors:
                     print(error)
             """
-            editForm.save(commit = False)
-            editForm.time = datetime.now().time()
-            editForm.save()
+           
             for tip in tips:
                 tip.save(commit = False)
                 tip.date = request.POST.get('date')

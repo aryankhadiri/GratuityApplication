@@ -39,7 +39,14 @@ class TipForm(forms.ModelForm):
     }))
     class Meta:
         model = Tip
-        fields = "__all__"
+        fields = {
+            'employee',
+            'point',
+            'tip_amount',
+            'paid_later',
+            'time_frame',
+            'paid_today'
+        }
         
 class newForm(forms.ModelForm):
     

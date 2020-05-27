@@ -1,7 +1,7 @@
 
 var dictionaryFromServer = document.getElementById("query").value
 var dictionary = JSON.parse(dictionaryFromServer);
-
+console.log(dictionary);
     function runExistingNumbers(){
         calculateTotalIndex();
         total_cc_tip();
@@ -95,6 +95,7 @@ function shift_tip_func(){
 function getIndexOfEmployee(doc){
     var selectedEmployeeId = doc.value
     index = relativeIndexFinder(doc)
+    console.log(index)
     document.getElementById("indexes").children[index].value = dictionary[selectedEmployeeId]
 }
 function relativeIndexFinder(doc){

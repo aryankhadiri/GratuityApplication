@@ -58,7 +58,12 @@
                 <input readonly type="number" id="shift_tip">
             </div>
         </div>
-
+        <!-- hidden section-->
+            <div>
+        {% for form in form %}
+            {{form.id}}
+        {%endfor%}
+            </div>
         <!-- second section-->
         <div class="row" id="second-section">
             <div class="col s5ths" id="names">
