@@ -30,6 +30,6 @@ urlpatterns = [
     path('weeklyreports', weekly_report_view, name = "weekly_reports"),  
     path('list/<int:id>/', update_employee_view, name = 'update_employee'),
     path('logout', logout_view, name = 'logout'),
-    path('homepage/<int:id>/', update_form_view, name = 'update_form'),
+    path('<int:id>/', update_form_view, name = 'update_form'),
 
 ]

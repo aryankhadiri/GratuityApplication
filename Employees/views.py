@@ -40,9 +40,9 @@ def home_view(request):
                 new_instance.time_frame = request.POST.get('time_frame')
                 new_instance.save()
                 
-                new_instance2 = new_form.save(commit = False)
-                new_instance2.time = datetime.now().time()
-                new_instance2.save()
+            new_instance2 = new_form.save(commit = False)
+            new_instance2.time = datetime.now().time()
+            new_instance2.save()
             messages.success(request, "The Tips have been successfully saved!")
             messages.success(request, "The form has been successfully saved!")
 

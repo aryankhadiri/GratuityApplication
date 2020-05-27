@@ -21,12 +21,12 @@ def home_view(request):
     if request.method == 'POST':
         start_date = request.POST['start_date_input']
         end_date = request.POST['end_date_input']
-        forms = Form.objects.filter(date__gte=start_date).filter(date__lte=end_date)
-        return render(request, 'home.html', {'allForms':forms})
+        forms = Form.objects.filter(date__gte=start_date).filter(date__lte=end_date).order_by('-date')
+        return render(request, 'home.html', {'allForms':forms, 'start_date': start_date, 'end_date':end_date})
     
     today_date = datetime.today().date()
     week_ago = today_date - timedelta(days=7)
-    allForms = Form.objects.filter(date__gte = week_ago)
+    allForms = Form.objects.filter(date__gte = week_ago).order_by('-date')
     #fetch all the forms submitted between week ago and today. 
     context = {
         'title': title,
@@ -135,17 +135,37 @@ def update_form_view(request, id = id):
             Tip.objects.filter(date = form.date).filter(time_frame = form.time_frame).delete()
             form.delete()
             return redirect('home')
+        
+        else:
+            date = request.POST['date']
+            time_frame = request.POST['time_frame']
+            if Form.objects.filter(date = date).filter(time_frame = time_frame).exists():
+                existing_form_query = Form.objects.filter(date = date).filter(time_frame = time_frame)
+                if existing_form_query[0].id != id:
+                    error_message = "There is already a form for the date: " + date + " and timeframe: " + time_frame
+                    messages.error(request, error_message)
+                    return redirect("update_form", id = id)
+            
+            tipForms = tipFormSet(request.POST)
+            
+            if tipForms.is_valid():
+                print('hello')
+            else:
+                for error in tipForms.errors:
+                    print(error)
+            """
+            editForm.save(commit = False)
+            editForm.time = datetime.now().time()
+            editForm.save()
+            for tip in tips:
+                tip.save(commit = False)
+                tip.date = request.POST.get('date')
+                tip.time_frame = request.POST.get('time_frame')
+                tip.save()
+
+            """
+                
     
-
-        date = request.POST['date']
-        time_frame = request.POST['time_frame']
-        if Form.objects.filter(date = date).filter(time_frame = time_frame).exists():
-            existing_form_query = Form.objects.filter(date = date).filter(time_frame = time_frame)
-            if existing_form_query[0].id != id:
-                error_message = "There is already a form for the date: " + date + " and timeframe: " + time_frame
-                messages.error(request, error_message)
-                return redirect("update_form", id = id)
-
     context = {
         'form':tips,
         'new_form': editForm,

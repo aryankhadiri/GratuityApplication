@@ -17,10 +17,10 @@
       {% csrf_token %}
       
       <label class="date_label" id="start_date_label"> Start Date</label>
-      <input class="dates" type="date" name="start_date_input" id="start_date_input" required>
+      <input class="dates" type="date" name="start_date_input" id="start_date_input" value = "{{start_date}}" required >
       
       <label class="date_label" for="end_date_input" id="end_date_label"> End Date</label>
-      <input class="dates" type="date" name="end_date_input" id="end_date_input" required>
+      <input class="dates" type="date" name="end_date_input" id="end_date_input" value = "{{end_date}}" required>
 
       <div class="center-align">
          <input type="submit" value="Search">
